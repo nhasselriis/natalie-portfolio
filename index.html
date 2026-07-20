@@ -10,27 +10,94 @@
         type="image/png"
         href="https://images.squarespace-cdn.com/content/v1/68d9654d0cba3d433908582a/607da867-b0da-49b7-b2d4-81282bc70b76/2021-03-03-05.16.png?format=1000w"
     >
+
+    <style>
+        body {
+            font-family: Futura, sans-serif;
+            text-align: center;
+        }
+
+        section {
+            position: relative;
+            display: inline-block;
+            margin-top: 40px;
+        }
+
+.speech-bubble {
+    position: absolute;
+    top: 40px;
+    left: 430px;
+
+    width: 300px;          /* Adjust width here */
+    background: #117912;
+    color: white;
+
+    border-radius: .4em;
+    padding: 15px 20px;
+    text-align: left;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    width: 0;
+    height: 0;
+
+    border: 20px solid transparent;
+    border-right-color: #117912;
+    border-left: 0;
+    border-top: 0;          /* Changed from border-bottom: 0 */
+
+    margin-top: -10px;
+    margin-left: -20px;
+}
+
+        h3 {
+            margin: 0;
+            font-size: 1.1em;
+            font-weight: normal;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>The N.K. Hasselriis Github Repo</h1>   
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="about.html">About</a> |
-            <a href="projects.html">Projects</a>
-        </nav>
-    </header>
 
-    <main>
-        <section>
-        <img src="assets\images\uncle_iroh.png" width="500" alt="Uncle Iroh">
-    <h3>"It is important to draw wisdom from many different places. If we take it from only one place, it becomes rigid and stale. Understanding others, the other elements, and the other nations, will help you to become whole." —Uncle Iroh</h3>
+<header>
+    <h1>The N.K. Hasselriis GitHub Repo</h1>
+
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="about.html">About</a> |
+        <a href="projects.html">Projects</a>
+    </nav>
+</header>
+
+<main>
+    <section>
+
+        <img
+            src="assets/images/uncle_iroh.png"
+            width="500"
+            alt="Uncle Iroh holding a hot cup of tea"
+        >
+
+        <div class="speech-bubble">
+            <h3>
+                “Life happens wherever you are, whether you make it or not.”
+                <br><br>
+                — Uncle Iroh
+            </h3>
+        </div>
+
     </section>
-    </main>
+</main>
 
-    <footer>
-        <p>Created by Natalie Hasselriis</p>
-    </footer>
+<footer>
+    <p>© Natalie Hasselriis</p>
+</footer>
+
 </body>
 </html>
