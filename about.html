@@ -3,116 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natalie's Portfolio</title>
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="https://images.squarespace-cdn.com/content/v1/68d9654d0cba3d433908582a/607da867-b0da-49b7-b2d4-81282bc70b76/2021-03-03-05.16.png?format=1000w"
-    >
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-    }
-
-    main {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    section {
-        margin-bottom: 40px;
-    }
-
-    p {
-        text-align: left;
-        line-height: 1.6;
-    }
-
-    ul {
-        display: inline-block;
-        text-align: left;
-        padding-left: 25px;
-        margin: 0 auto;
-    }
-
-    li {
-        margin-bottom: 8px;
-    }
-    footer p {
-    text-align: center;
-}
-</style>
+    <title>About Natalie</title>
+    <link rel="icon" type="image/png" href="https://images.squarespace-cdn.com/content/v1/68d9654d0cba3d433908582a/607da867-b0da-49b7-b2d4-81282bc70b76/2021-03-03-05.16.png?format=1000w">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header>
-<h1>The N.K. Hasselriis Github Repo</h1>        
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="about.html">About</a> |
-            <a href="projects.html">Projects</a>
-        </nav>
-    </header>
-<h1>About Natalie</h1>
-    <main>
-        <section>
-            <img
-                src="assets/images/headshot_final.png"
-                width="200"
-                alt="Professional headshot of Natalie"
-            >
+<header>
+    <h1>The N.K. Hasselriis GitHub Repo</h1>
+    <nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="projects.html">Projects</a>
+    </nav>
+</header>
+<main>
+    <h1>About Natalie</h1>
 
+    <section class="about-intro">
+        <img class="profile-photo" src="assets/images/headshot_final.png" alt="Professional headshot of Natalie">
+        <div class="about-copy">
             <h2>The PR Spiel</h2>
+            <p>Natalie is a novelist, visual artist, and storyteller driven by a lifelong passion for creating meaningful, immersive worlds. Blending elements of fantasy and introspective fiction, her work explores resilience, identity, and the quiet strength found in overcoming adversity.</p>
+            <p>Having created art since early childhood, Natalie works across traditional and digital mediums, with a particular love for detailed illustration, photography, and handcrafted pieces like origami.</p>
+            <p>She is currently revising her debut novel, <em>Archway</em>, a project over a decade in the making, while also building a creative platform to share her work and connect with others through storytelling.</p>
+            <p>When she is not writing, Natalie enjoys gaming, streaming, caring for animals, and finding inspiration in everyday moments.</p>
+        </div>
+    </section>
 
-            <p>
-                Natalie is a novelist, visual artist, and storyteller driven
-                by a lifelong passion for creating meaningful, immersive
-                worlds. Blending elements of fantasy and introspective fiction,
-                her work explores resilience, identity, and the quiet strength
-                found in overcoming adversity.
-            </p>
+    <section class="book-section" id="book-page">
+        <h2>From the Author's Notebook</h2>
+        <div class="parchment-page">
+            <article class="parchment-copy">
+                <h2>Stories Begin with a Doorway</h2>
+                <p>Every project begins as a small question scribbled in the margin: What lies beyond the familiar, and who might we become by crossing the threshold?</p>
+                <p>This single-column parchment can hold a short biography, an excerpt from <em>Archway</em>, a letter to readers, or a rotating note about your current creative work.</p>
+                <h3>Current Creative Notes</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Replace this text with a project update, quotation, or short journal entry.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt.</p>
+            </article>
+        </div>
+    </section>
 
-            <p>
-                Having created art since early childhood, Natalie works across
-                traditional and digital mediums, with a particular love for
-                detailed illustration, photography, and handcrafted pieces
-                like origami.
-            </p>
+    <section id="personal-interests">
+        <p class="section-kicker">Beyond the Portfolio</p>
+        <h2>Personal Interests</h2>
+        <p class="section-intro">A flexible gallery for the hobbies, subjects, and creative practices that shape my work. Replace the sample text whenever you are ready.</p>
 
-            <p>
-                She is currently revising her debut novel, <em>Archway</em>, a
-                project over a decade in the making, while also building a
-                creative platform to share her work and connect with others
-                through storytelling.
-            </p>
+        <div class="interest-list">
+            <article class="feature-row">
+                <div class="feature-media"><img src="assets/images/video-games.png" alt="Promotional image of Princess Zelda holding a torch and Sheikah Slate/Purah Pad from Tears of the Kingdom"></div>
+                <div class="feature-copy"><h3>Video Games</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt. Suspendisse potenti, sed feugiat sem vitae neque porta, a commodo nibh luctus.</p></div>
+            </article>
 
-            <p>
-                When she is not writing, Natalie enjoys gaming, streaming,
-                caring for animals, and finding inspiration in everyday
-                moments.
-            </p>
-        </section>
+            <article class="feature-row reverse">
+                <div class="feature-media"><img src="assets/images/origami.jpg" alt="Dusk purple and grey origami butterfly"></div>
+                <div class="feature-copy"><h3>Origami</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt. Suspendisse potenti, sed feugiat sem vitae neque porta, a commodo nibh luctus.</p></div>
+            </article>
 
-        <section>
-            <h2>Personal Interests</h2>
+            <article class="feature-row">
+                <div class="feature-media"><img src="assets/images/baking.jpg" alt="Close-up photograph of text from The Martian by Andy Weir"></div>
+                <div class="feature-copy"><h3>Reading</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt. Suspendisse potenti, sed feugiat sem vitae neque porta, a commodo nibh luctus.</p></div>
+            </article>
 
-            <h3>Next LEGO Sets to Buy</h3>
+            <article class="feature-row reverse">
+                <div class="feature-media"><img src="assets/images/reading.jpg" alt="Gromit character cake"></div>
+                <div class="feature-copy"><h3>Cooking &amp; Baking</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt. Suspendisse potenti, sed feugiat sem vitae neque porta, a commodo nibh luctus.</p></div>
+            </article>
 
-            <ul>
-                <li>Project Hail Mary</li>
-                <li>Hokusai – The Great Wave</li>
-                <li>Japanese Cherry Blossom Landscape</li>
-            </ul>
-        </section>
-    </main>
+            <article class="feature-row">
+                <div class="feature-media"><img src="assets/images/bambi-art.jpg" alt="Colored-pencil drawing of adult Bambi (deer) with flower petals"></div>
+                <div class="feature-copy"><h3>Art</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt. Suspendisse potenti, sed feugiat sem vitae neque porta, a commodo nibh luctus.</p></div>
+            </article>
 
-    <footer>
-        <p>© Natalie Hasselriis</p>
-    </footer>
+            <article class="feature-row reverse">
+                <div class="feature-media"><img src="assets/images/lego.jpg" alt="LEGO Japanese landscape wall art with cherry blossoms and Mount Fuji"></div>
+                <div class="feature-copy">
+                    <h3>LEGO</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt. Suspendisse potenti, sed feugiat sem vitae neque porta, a commodo nibh luctus.</p>
+                    <h4>Next LEGO Sets to Buy</h4>
+                    <ul class="lego-wishlist">
+                        <li>Project Hail Mary</li>
+                        <li>Hokusai – The Great Wave</li>
+                        <li>Japanese Cherry Blossom Landscape</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="feature-row">
+                <div class="feature-media"><img src="assets/images/streaming.png" alt="Natalie streaming The Legend of Zelda: Tears of the Kingdom with a face-camera overlay"></div>
+                <div class="feature-copy"><h3>Streaming</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae justo vel sapien volutpat tincidunt. Suspendisse potenti, sed feugiat sem vitae neque porta, a commodo nibh luctus.</p></div>
+            </article>
+        </div>
+    </section>
+</main>
+<footer><p>© 2026 Natalie Hasselriis</p></footer>
 </body>
 </html>

@@ -4,109 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Natalie's Portfolio</title>
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="https://images.squarespace-cdn.com/content/v1/68d9654d0cba3d433908582a/607da867-b0da-49b7-b2d4-81282bc70b76/2021-03-03-05.16.png?format=1000w"
-    >
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-    }
-
-    main {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    section {
-        position: relative;
-        margin: 40px auto;
-    }
-
-    .speech-bubble {
-        position: absolute;
-        top: 40px;
-        left: 430px;
-
-        width: 260px;
-        background: #1d943b;
-        color: white;
-        border-radius: .4em;
-        padding: 15px 20px;
-        text-align: left;
-    }
-
-    .speech-bubble:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        width: 0;
-        height: 0;
-        border: 20px solid transparent;
-        border-right-color: #1d943b;
-        border-left: 0;
-        border-top: 0;
-        margin-top: -10px;
-        margin-left: -20px;
-    }
-
-    h3 {
-        margin: 0;
-        font-size: 1.1em;
-        font-weight: normal;
-    }
-
-    footer p {
-        text-align: center;
-    }
-</style>
+    <link rel="icon" type="image/png" href="https://images.squarespace-cdn.com/content/v1/68d9654d0cba3d433908582a/607da867-b0da-49b7-b2d4-81282bc70b76/2021-03-03-05.16.png?format=1000w">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <header>
     <h1>The N.K. Hasselriis GitHub Repo</h1>
-
-    <nav>
-        <a href="index.html">Home</a> |
-        <a href="about.html">About</a> |
+    <nav aria-label="Primary navigation">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
     </nav>
 </header>
-
 <main>
     <h2>Welcome to my portfolio!</h2>
-    <section>
-
-        <img
-            src="assets/images/uncle_iroh.png"
-            width="500"
-            alt="Uncle Iroh holding a hot cup of tea"
-        >
-
-        <div class="speech-bubble">
-            <h3>
-                “Life happens wherever you are, whether you make it or not.”
-                <br><br>
-                — Uncle Iroh
-            </h3>
+    <section class="hero-scene">
+        <div class="iroh-portrait">
+            <img src="assets/images/uncle_iroh.png" alt="Illustration of Uncle Iroh smiling and holding a cup of tea">
         </div>
-
+        <blockquote class="speech-bubble">
+            <span class="earth-kingdom-mark">A Little Iroh Wisdom</span>
+            <p id="hero-quote">“Life happens wherever you are, whether you make it or not.”</p>
+            <cite>— Uncle Iroh</cite>
+        </blockquote>
     </section>
 
+    <section id="campus-edu">
+        <p class="section-kicker">Learning &amp; Community</p>
+        <h2>My Campus.edu Experience</h2>
+        <p class="section-intro">I've been attending campus since January 2026, after dodging phone calls from the admissions counselor for the two weeks. Read on to discover my journey and learn more.</p>
+        <div class="feature-list campus-features">
+            <article class="feature-row">
+                <div class="feature-media campus-media"><img src="assets/images/campus-letter.png" alt="Campus-branded wax seal, envelope, stamp, and sealing spoon"></div>
+                <div class="feature-copy"><h3>Why I Chose Campus</h3><p>This is my fourth time in college, and I'm in my early 30s, which gives me a great perspective of how things work. It not only helps me to help others but gives great meaning to my days. I'm here to up my IT skills for use in my own future entrepreneurial endeavors and to prove to myself that I can finish an advanced degree despite my chronic pain and disability. </p></div>
+            </article>
+            <article class="feature-row reverse">
+                <div class="feature-media campus-media"><img src="assets/images/campus-community.png" alt="Campus online community with club channels, messages, and student video tiles"></div>
+                <div class="feature-copy"><h3>Community &amp; Support</h3><p>Unlike a traditional college's online program, or an all-online college, I find Campus quite refreshing for the interactivity that students get and for having live lectures and discussion sections. It brings in that innate need for connection and a sense of belonging, whereas an all-online college feels very stiff, alone, and in many ways unsupportive. There are a plethora of clubs to join and other activities to fill a student's time in and outside of classes.</p></div>
+            </article>
+            <article class="feature-row campus-writer-row">
+                <div class="feature-media badge-media"><img src="assets/images/campus-writer-badge.png" alt="Purple Campus Writer badge with a pencil icon"></div>
+                <div class="feature-copy"><p class="section-kicker">Student Storytelling</p><h3>Campus Writer</h3><p>I'm proud to be a part of Campus Studio as a Campus Writer. Each month, we are given a prompt to write things like articles, testimonials, and more recently we will be doing creative pieces. We're basically an add-on to marketing, but with the bonus of more exposure and potential publishing credits. I hope to see a lot from my fellow Campus Writers, as it's a new program, and I'd love to see more original writing and less AI in this space.</p></div>
+            </article>
+        </div>
+    </section>
 </main>
-
-<footer>
-    <p>© Natalie Hasselriis</p>
-</footer>
-
+<footer><p>© 2026 Natalie Hasselriis</p></footer>
 </body>
 </html>
