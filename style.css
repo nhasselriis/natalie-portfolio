@@ -199,20 +199,20 @@ img { max-width: 100%; height: auto; display: block; }
 .book-section { overflow: hidden; background: linear-gradient(145deg, #dce6c9, #f8f3e5); }
 .parchment-page {
     position: relative;
-    width: min(100%, 700px);
+    width: min(100%, 625px);
     aspect-ratio: 1024 / 1536;
-    margin: 24px auto 0;
+    margin: 34px auto 0;
     background: url('assets/images/parchment-page.png') center/contain no-repeat;
 }
 .parchment-copy {
     position: absolute;
-    inset: 15% 13% 11% 13%;
+    inset: 20% 13% 11% 5%;
     overflow: auto;
-    padding: 12px 8px;
+    padding: 25px 4px 8px 80px;
     text-align: left;
 }
 .parchment-copy h2 { color: var(--forest); margin-top: 0; text-align: center; }
-.parchment-copy p { line-height: 1.85; }
+.parchment-copy p { line-height: 2.17; }
 
 .feature-row {
     display: grid;
