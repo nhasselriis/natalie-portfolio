@@ -456,8 +456,7 @@ footer p { margin: 0; text-align: center; }
     #hero-quote { font-size: 1.2rem; }
 }
 
-/* Journal-paper cards with decorative tape
-   Shared across About interests, Campus features, and Projects. */
+/* Journal-paper cards with decorative tape */
 .interest-list .feature-row,
 .campus-features .feature-row,
 .project-list .feature-row {
@@ -563,7 +562,7 @@ footer p { margin: 0; text-align: center; }
     background: rgba(255, 253, 248, .72);
 }
 
-/* Two page-level sections feel like pages in the same notebook. */
+/* Two page-level sections */
 #campus-edu,
 #projects-gallery {
     position: relative;
@@ -703,15 +702,15 @@ footer p { margin: 0; text-align: center; }
 }
 
 
-/* Iroh footer signoff */
-.iroh-signoff {
+/* Character footer signoff */
+.character-signoff {
     width: min(100% - 32px, 1040px);
     margin: 0 auto;
     padding: 8px 0 0;
     text-align: center;
 }
 
-.iroh-divider {
+.character-divider {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -722,13 +721,13 @@ footer p { margin: 0; text-align: center; }
     font-size: 1.15rem;
 }
 
-.iroh-divider .divider-line {
+.character-divider .divider-line {
     flex: 1;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--forest), var(--mustard), var(--forest), transparent);
 }
 
-.iroh-note {
+.character-note {
     position: relative;
     width: min(88%, 470px);
     margin: 0 auto 8px;
@@ -742,7 +741,7 @@ footer p { margin: 0; text-align: center; }
     transform: rotate(-.5deg);
 }
 
-.iroh-note::before {
+.character-note::before {
     content: '';
     position: absolute;
     top: -12px;
@@ -756,7 +755,7 @@ footer p { margin: 0; text-align: center; }
     clip-path: polygon(3% 7%, 98% 0, 95% 92%, 1% 100%);
 }
 
-.iroh-note p {
+.character-note p {
     margin: 0 auto 10px;
     text-align: center;
     font-family: 'Lora', serif;
@@ -765,7 +764,7 @@ footer p { margin: 0; text-align: center; }
     line-height: 1.6;
 }
 
-.iroh-note cite {
+.character-note cite {
     display: block;
     text-align: right;
     color: var(--forest);
@@ -774,7 +773,7 @@ footer p { margin: 0; text-align: center; }
     font-size: .95rem;
 }
 
-.iroh-mascot {
+.character-mascot {
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -782,7 +781,7 @@ footer p { margin: 0; text-align: center; }
     overflow: hidden;
 }
 
-.iroh-mascot img {
+.character-mascot img {
     width: min(46vw, 235px);
     max-height: 245px;
     object-fit: contain;
@@ -792,17 +791,15 @@ footer p { margin: 0; text-align: center; }
 }
 
 @media (max-width: 600px) {
-    .iroh-signoff { width: min(100% - 22px, 1040px); }
-    .iroh-divider { width: 94%; gap: 7px; margin-bottom: 20px; }
-    .iroh-note { width: 92%; padding: 24px 20px 18px; transform: none; }
-    .iroh-mascot { min-height: 160px; }
-    .iroh-mascot img { width: min(58vw, 205px); max-height: 215px; }
+    .character-signoff { width: min(100% - 22px, 1040px); }
+    .character-divider { width: 94%; gap: 7px; margin-bottom: 20px; }
+    .character-note { width: 92%; padding: 24px 20px 18px; transform: none; }
+    .character-mascot { min-height: 160px; }
+    .character-mascot img { width: min(58vw, 205px); max-height: 215px; }
 }
-/* End Iroh footer signoff */
+/* End character footer signoff */
 
-/* ===== Iteration: responsive About intro + Archway feature + simplified Iroh signoff ===== */
-
-/* Featured work at the top of Home. Styled like a taped journal entry. */
+/* Featured work at the top of Home. */
 .archway-feature {
     display: grid;
     grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
@@ -912,7 +909,7 @@ footer p { margin: 0; text-align: center; }
     margin-left: 0;
 }
 
-/* Meet Natalie: shrink gracefully, then stack before the copy gets narrow. */
+/* Meet Natalie */
 @media (max-width: 960px) {
     .about-intro {
         grid-template-columns: 210px minmax(0, 1fr);
@@ -947,42 +944,32 @@ footer p { margin: 0; text-align: center; }
     }
 }
 
-/* Iroh is a small footer mascot rather than a full layout block. */
-.iroh-signoff {
+/* Mascots. */
+.character-signoff {
     width: min(100% - 32px, 1040px);
     margin: 0 auto;
     padding: 12px 0 0;
 }
 
-.iroh-note {
+.character-note {
     width: min(92%, 500px);
     margin-bottom: 10px;
 }
 
-.iroh-mascot {
+.character-mascot {
     display: block;
     min-height: 0;
     overflow: visible;
     line-height: 0;
 }
 
-.iroh-mascot img {
+.character-mascot img {
     width: min(34vw, 190px);
     max-height: none;
     height: auto;
     object-fit: contain;
     margin: 10px auto 0;
     transform: none;
-}
-
-/* The old hero/speech-bubble and notebook rules are no longer part of this version. */
-.hero-scene,
-.iroh-portrait,
-.speech-bubble,
-.earth-kingdom-mark,
-.parchment-page,
-.parchment-copy {
-    /* Intentionally unused; retained only to avoid affecting older markup if copied in. */
 }
 
 @media (max-width: 760px) {
@@ -1023,11 +1010,278 @@ footer p { margin: 0; text-align: center; }
         min-height: 0;
     }
 
-    .iroh-note {
+    .character-note {
         width: 94%;
     }
 
-    .iroh-mascot img {
+    .character-mascot img {
         width: min(44vw, 165px);
     }
 }
+
+/* Notebook placeholder page */
+.notebook-section {
+    position: relative;
+    max-width: 860px;
+    padding: 34px;
+    background: rgba(255,255,255,.48);
+}
+
+.notebook-paper {
+    position: relative;
+    min-height: 430px;
+    margin: 26px auto 4px;
+    padding: 56px 52px 48px 78px;
+    text-align: left;
+    background:
+        linear-gradient(90deg, transparent 0 48px, rgba(205,163,73,.42) 49px, rgba(205,163,73,.42) 51px, transparent 52px),
+        repeating-linear-gradient(0deg, #fffdf8 0, #fffdf8 31px, rgba(130,181,216,.28) 32px, #fffdf8 33px);
+    border: 1px solid rgba(70,58,47,.25);
+    border-radius: 6px 12px 8px 10px;
+    box-shadow: 0 12px 24px rgba(70,58,47,.13);
+}
+
+.notebook-paper::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    width: 108px;
+    height: 25px;
+    transform: translateX(-50%) rotate(-2deg);
+    background: rgba(221,230,200,.82);
+    border: 1px solid rgba(70,58,47,.12);
+    box-shadow: 0 2px 5px rgba(70,58,47,.1);
+    clip-path: polygon(3% 6%,98% 0,96% 92%,1% 100%);
+}
+
+.notebook-paper p { max-width: 58ch; margin-left: 0; }
+.notebook-lead { font-family: 'Lora', serif; font-size: clamp(1.35rem,3vw,2rem); color: var(--forest); }
+
+@media (max-width: 600px) {
+    .notebook-section { padding: 18px; }
+    .notebook-paper {
+        min-height: 350px;
+        padding: 44px 22px 36px 46px;
+        background:
+            linear-gradient(90deg, transparent 0 28px, rgba(205,163,73,.42) 29px, rgba(205,163,73,.42) 31px, transparent 32px),
+            repeating-linear-gradient(0deg, #fffdf8 0, #fffdf8 31px, rgba(130,181,216,.28) 32px, #fffdf8 33px);
+    }
+}
+
+
+/* Secret placeholder page */
+.secret-section {
+    width: min(100% - 36px, 1040px);
+    margin: 0 auto;
+    padding: 32px 0 18px;
+}
+
+.secret-feature-card {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(300px, 48vw, 470px);
+    margin: 26px auto 8px;
+    border: 1px solid rgba(70, 58, 47, .18);
+    border-left: 7px solid var(--mustard);
+    border-radius: 18px 8px 18px 8px;
+    background: rgba(255, 252, 243, .78);
+    box-shadow: 0 18px 38px rgba(54, 46, 37, .10);
+}
+
+.secret-feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px dashed rgba(70, 58, 47, .22);
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.secret-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    grid-auto-flow: column;
+    gap: 12px;
+}
+
+.secret-placeholder span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .24;
+}
+
+@media (max-width: 640px) {
+    .secret-section { width: min(100% - 24px, 1040px); padding-top: 20px; }
+    .secret-feature-card { min-height: 280px; }
+}
+/* End Secret placeholder page */
+
+
+/* ===== Secret Tunnel footer easter egg ===== */
+.toph-signoff .character-mascot {
+    min-height: 205px;
+}
+
+.toph-signoff .character-mascot img {
+    width: min(56vw, 300px);
+    max-height: 225px;
+    margin-bottom: -2px;
+}
+
+/* Footer text */
+footer,
+footer p {
+    text-align: center;
+}
+
+.secret-easter-egg-anchor {
+    position: relative;
+    width: min(100% - 28px, 1120px);
+    height: 0;
+    margin: 0 auto;
+    z-index: 30;
+}
+
+.mountain-trigger {
+    position: absolute;
+    right: 8px;
+    bottom: 12px;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid rgba(70, 58, 47, .22);
+    border-radius: 50%;
+    background: rgba(251, 248, 241, .88);
+    box-shadow: 0 7px 16px rgba(54, 46, 37, .15);
+    color: inherit;
+    font: inherit;
+    font-size: 1.55rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+
+.mountain-trigger:hover {
+    transform: translateY(-2px) scale(1.04);
+    background: rgba(251, 248, 241, 1);
+    box-shadow: 0 9px 18px rgba(54, 46, 37, .20);
+}
+
+.mountain-trigger:focus-visible {
+    outline: 3px solid var(--mustard);
+    outline-offset: 3px;
+}
+
+.secret-tunnel-popout {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    z-index: 1000;
+    width: min(88vw, 430px);
+    padding: 0 12px 10px;
+    text-align: center;
+    pointer-events: none;
+    transform: translate(-50%, calc(100% + 28px));
+    will-change: transform;
+}
+
+.secret-tunnel-popout.is-playing {
+    animation: secretTunnelSlide 5.2s both;
+}
+
+.secret-tunnel-popout img {
+    display: block;
+    width: 100%;
+    max-height: 285px;
+    object-fit: cover;
+    border: 4px solid rgba(251, 248, 241, .94);
+    border-radius: 20px;
+    box-shadow: 0 14px 34px rgba(24, 18, 12, .38);
+}
+
+.secret-tunnel-label {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto -10px;
+    padding: 8px 18px 10px;
+    background: var(--cream);
+    border: 1px solid rgba(70, 58, 47, .28);
+    border-radius: 5px 9px 4px 8px;
+    box-shadow: 0 7px 14px rgba(70, 58, 47, .16);
+    color: var(--brown);
+    font-family: 'Lora', serif;
+    font-size: clamp(1.05rem, 3vw, 1.35rem);
+    font-weight: 700;
+    transform: rotate(-1deg);
+}
+
+/* Easter Egg */
+@keyframes secretTunnelSlide {
+    0% {
+        transform: translate(-50%, calc(100% + 28px));
+        animation-timing-function: cubic-bezier(.16, 1, .3, 1);
+    }
+    18% {
+        transform: translate(-50%, 0);
+        animation-timing-function: linear;
+    }
+    76% {
+        transform: translate(-50%, 0);
+        animation-timing-function: cubic-bezier(.7, 0, .84, 0);
+    }
+    100% {
+        transform: translate(-50%, calc(100% + 28px));
+    }
+}
+
+@media (max-width: 600px) {
+    .toph-signoff .character-mascot {
+        min-height: 175px;
+    }
+
+    .toph-signoff .character-mascot img {
+        width: min(72vw, 270px);
+        max-height: 205px;
+    }
+
+    .secret-easter-egg-anchor {
+        width: calc(100% - 16px);
+    }
+
+    .mountain-trigger {
+        right: 4px;
+        bottom: 10px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.4rem;
+    }
+
+    .secret-tunnel-popout {
+        width: min(94vw, 390px);
+    }
+
+    .secret-tunnel-popout img {
+        max-height: 240px;
+        border-radius: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .secret-tunnel-popout.is-playing {
+        animation: secretTunnelReduced 5.2s ease both;
+    }
+}
+
+@keyframes secretTunnelReduced {
+    0%, 100% { transform: translate(-50%, calc(100% + 28px)); }
+    8%, 92% { transform: translate(-50%, 0); }
+}
+/* ===== End Secret Tunnel footer easter egg ===== */
