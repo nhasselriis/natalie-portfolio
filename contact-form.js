@@ -86,7 +86,7 @@ if (form) {
             return;
         }
 
-        status.textContent = 'Connect to service later.';
+        status.textContent = 'Thanks! This demonstration form is complete and ready to connect to a form service later.';
         status.className = 'form-status form-status-success';
         form.reset();
     });

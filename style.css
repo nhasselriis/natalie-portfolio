@@ -456,7 +456,8 @@ footer p { margin: 0; text-align: center; }
     #hero-quote { font-size: 1.2rem; }
 }
 
-/* Journal-paper cards with decorative tape */
+/* Journal-paper cards with decorative tape
+   Shared across About interests, Campus features, and Projects. */
 .interest-list .feature-row,
 .campus-features .feature-row,
 .project-list .feature-row {
@@ -562,7 +563,7 @@ footer p { margin: 0; text-align: center; }
     background: rgba(255, 253, 248, .72);
 }
 
-/* Two page-level sections */
+/* Two page-level sections feel like pages in the same notebook. */
 #campus-edu,
 #projects-gallery {
     position: relative;
@@ -799,7 +800,9 @@ footer p { margin: 0; text-align: center; }
 }
 /* End character footer signoff */
 
-/* Featured work at the top of Home. */
+/* ===== Iteration: responsive About intro + Archway feature + simplified Iroh signoff ===== */
+
+/* Featured work at the top of Home. Styled like a taped journal entry. */
 .archway-feature {
     display: grid;
     grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
@@ -909,7 +912,7 @@ footer p { margin: 0; text-align: center; }
     margin-left: 0;
 }
 
-/* Meet Natalie */
+/* Meet Natalie: shrink gracefully, then stack before the copy gets narrow. */
 @media (max-width: 960px) {
     .about-intro {
         grid-template-columns: 210px minmax(0, 1fr);
@@ -944,7 +947,7 @@ footer p { margin: 0; text-align: center; }
     }
 }
 
-/* Mascots. */
+/* Iroh is a small footer mascot rather than a full layout block. */
 .character-signoff {
     width: min(100% - 32px, 1040px);
     margin: 0 auto;
@@ -970,6 +973,16 @@ footer p { margin: 0; text-align: center; }
     object-fit: contain;
     margin: 10px auto 0;
     transform: none;
+}
+
+/* The old hero/speech-bubble and notebook rules are no longer part of this version. */
+.hero-scene,
+.iroh-portrait,
+.speech-bubble,
+.earth-kingdom-mark,
+.parchment-page,
+.parchment-copy {
+    /* Intentionally unused; retained only to avoid affecting older markup if copied in. */
 }
 
 @media (max-width: 760px) {
@@ -1074,7 +1087,7 @@ footer p { margin: 0; text-align: center; }
 .secret-section {
     width: min(100% - 36px, 1040px);
     margin: 0 auto;
-    padding: 32px 0 18px;
+    padding: 28px;
 }
 
 .secret-feature-card {
@@ -1116,13 +1129,15 @@ footer p { margin: 0; text-align: center; }
 }
 
 @media (max-width: 640px) {
-    .secret-section { width: min(100% - 24px, 1040px); padding-top: 20px; }
+    .secret-section { width: min(100% - 24px, 1040px); padding: 18px; }
     .secret-feature-card { min-height: 280px; }
 }
 /* End Secret placeholder page */
 
 
 /* ===== Secret Tunnel footer easter egg ===== */
+/* Toph remains an ordinary footer mascot. The easter egg is a separate control
+   parked just above the footer so the two interactions never fight for size. */
 .toph-signoff .character-mascot {
     min-height: 205px;
 }
@@ -1133,7 +1148,7 @@ footer p { margin: 0; text-align: center; }
     margin-bottom: -2px;
 }
 
-/* Footer text */
+/* Keep the copyright visually centered regardless of nearby decorative controls. */
 footer,
 footer p {
     text-align: center;
@@ -1193,7 +1208,7 @@ footer p {
 }
 
 .secret-tunnel-popout.is-playing {
-    animation: secretTunnelSlide 5.2s both;
+    animation: secretTunnelSlide 12s both;
 }
 
 .secret-tunnel-popout img {
@@ -1223,17 +1238,19 @@ footer p {
     transform: rotate(-1deg);
 }
 
-/* Easter Egg */
+/* One continuous rise, a calm hold, then one continuous dip below the viewport.
+   There is deliberately no opacity animation or bounce, which avoids the visual
+   hop/fade from the previous version. */
 @keyframes secretTunnelSlide {
     0% {
         transform: translate(-50%, calc(100% + 28px));
         animation-timing-function: cubic-bezier(.16, 1, .3, 1);
     }
-    18% {
+    10% {
         transform: translate(-50%, 0);
         animation-timing-function: linear;
     }
-    76% {
+    90% {
         transform: translate(-50%, 0);
         animation-timing-function: cubic-bezier(.7, 0, .84, 0);
     }
@@ -1276,12 +1293,896 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
     .secret-tunnel-popout.is-playing {
-        animation: secretTunnelReduced 5.2s ease both;
+        animation: secretTunnelReduced 12s ease both;
     }
 }
 
 @keyframes secretTunnelReduced {
     0%, 100% { transform: translate(-50%, calc(100% + 28px)); }
-    8%, 92% { transform: translate(-50%, 0); }
+    5%, 95% { transform: translate(-50%, 0); }
 }
 /* ===== End Secret Tunnel footer easter egg ===== */
+
+/* Tea Garden Snake page */
+.snake-intro {
+    margin-bottom: 28px;
+}
+
+.snake-intro h2 {
+    margin: 0 0 12px;
+    font-size: clamp(2rem, 4.2vw, 3rem);
+}
+
+.snake-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, .8fr);
+    gap: 24px;
+    align-items: start;
+    text-align: left;
+}
+
+.snake-board-card,
+.snake-info-card {
+    position: relative;
+    background: rgba(251,248,241,.92);
+    border: 1px solid rgba(70,58,47,.18);
+    border-radius: 18px;
+    box-shadow: 0 14px 30px rgba(70,58,47,.10);
+}
+
+.snake-board-card {
+    padding: 24px;
+}
+
+.snake-info-card {
+    margin-bottom: 18px;
+    padding: 22px;
+}
+
+.snake-info-card:last-child {
+    margin-bottom: 0;
+}
+
+.snake-board-card::before,
+.snake-info-card::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 28px;
+    width: 74px;
+    height: 24px;
+    background: rgba(221,230,200,.88);
+    border: 1px solid rgba(70,58,47,.10);
+    transform: rotate(-3deg);
+    box-shadow: 0 3px 7px rgba(70,58,47,.10);
+}
+
+.snake-board-card::after,
+.snake-info-card::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 36px;
+    width: 52px;
+    height: 18px;
+    background: rgba(251,248,241,.9);
+    border: 1px solid rgba(70,58,47,.08);
+    transform: rotate(7deg);
+    opacity: .75;
+}
+
+.snake-board-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.snake-board-heading h3,
+.snake-info-card h3 {
+    margin: 4px 0 0;
+    color: var(--forest);
+}
+
+.snake-tea-label {
+    margin: 6px 0 0;
+    max-width: none;
+    text-align: right;
+    font-weight: 700;
+    color: var(--forest);
+}
+
+.snake-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.snake-stat-card {
+    padding: 14px 12px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(246,237,218,.98), rgba(238,228,201,.94));
+    border: 1px solid rgba(70,58,47,.16);
+    border-radius: 14px;
+}
+
+.snake-stat-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--forest);
+}
+
+.snake-stat-value {
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.snake-canvas-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 6px solid #7b5c2d;
+    box-shadow:
+        inset 0 0 0 3px #d2b16c,
+        0 18px 28px rgba(70,58,47,.18);
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.22), transparent 30%), #26422d;
+}
+
+#snake-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #e7d4a7;
+}
+
+.snake-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(38, 57, 43, .56);
+}
+
+.snake-overlay[hidden] {
+    display: none !important;
+}
+
+.snake-overlay-card {
+    width: min(100%, 320px);
+    padding: 24px;
+    text-align: center;
+    background: rgba(246,237,218,.98);
+    border: 1px solid rgba(70,58,47,.18);
+    border-radius: 20px;
+    box-shadow: 0 18px 30px rgba(70,58,47,.18);
+}
+
+.snake-overlay-card h3 {
+    margin: 4px 0 10px;
+    color: var(--forest);
+}
+
+.snake-overlay-card p {
+    text-align: center;
+}
+
+.snake-overlay-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.snake-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.snake-button {
+    padding: 12px 18px;
+    border: 2px solid var(--mustard);
+    border-radius: 999px;
+    background: var(--forest);
+    color: var(--cream);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+
+.snake-button:hover,
+.snake-button:focus-visible,
+.touch-arrow:hover,
+.touch-arrow:focus-visible {
+    background: var(--mustard);
+    color: var(--brown);
+    transform: translateY(-1px);
+}
+
+.snake-button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.snake-button-alt {
+    background: rgba(251,248,241,.92);
+    color: var(--brown);
+}
+
+.snake-meter-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.snake-meter-card {
+    padding: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(246,237,218,.95));
+    border: 1px solid rgba(70,58,47,.16);
+    border-radius: 14px;
+}
+
+.snake-meter-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.snake-meter-heading strong {
+    color: var(--forest);
+}
+
+.snake-meter-track {
+    overflow: hidden;
+    height: 14px;
+    border-radius: 999px;
+    background: rgba(70,58,47,.12);
+}
+
+.snake-meter-track span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6b9d45, #b7cf5d);
+    transition: width .15s linear;
+}
+
+.snake-effect-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.snake-effect-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(62,107,72,.12);
+    color: var(--forest);
+    font-size: .88rem;
+    font-weight: 700;
+}
+
+.snake-effect-chip-muted {
+    background: rgba(70,58,47,.08);
+    color: var(--brown);
+}
+
+.game-status {
+    margin: 18px auto 0;
+    text-align: center;
+    font-weight: 700;
+    color: var(--forest);
+}
+
+.snake-touch-controls {
+    margin-top: 18px;
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+}
+
+.touch-arrow-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.touch-arrow {
+    width: 54px;
+    height: 54px;
+    border: 2px solid var(--mustard);
+    border-radius: 14px;
+    background: var(--forest);
+    color: var(--cream);
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.snake-legend-list {
+    display: grid;
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.snake-legend-list li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+.snake-legend-list strong,
+.snake-legend-list span {
+    display: block;
+}
+
+.snake-legend-list span {
+    font-size: .94rem;
+}
+
+.legend-icon {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+}
+
+.legend-leaf::before,
+.legend-jasmine::before,
+.legend-seed::before,
+.legend-pot::before,
+.legend-dragon::before,
+.legend-lotus::before,
+.legend-cup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.legend-leaf::before {
+    inset: 6px 11px 5px 13px;
+    background: linear-gradient(160deg, #bada54, #5c8a2d);
+    border-radius: 80% 12% 80% 12%;
+    transform: rotate(42deg);
+    box-shadow: inset -2px -2px 0 rgba(255,255,255,.28);
+}
+
+.legend-cup::before {
+    inset: 10px 7px 8px 7px;
+    border: 3px solid #5d77aa;
+    border-radius: 0 0 12px 12px;
+    background: #fff8ec;
+}
+
+.legend-cup::after {
+    content: '';
+    position: absolute;
+    right: 1px;
+    top: 14px;
+    width: 10px;
+    height: 12px;
+    border: 3px solid #5d77aa;
+    border-left: 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.legend-lotus::before {
+    inset: 5px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #ebe3c8, #cfc397);
+    border: 2px solid #96875f;
+}
+
+.legend-lotus::after,
+.legend-jasmine::after {
+    content: '✿';
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #c39b2e;
+    font-size: 1.2rem;
+}
+
+.legend-jasmine::before {
+    inset: 4px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffef8 0, #f3ead6 65%, rgba(255,255,255,.2) 100%);
+}
+
+.legend-seed::before {
+    inset: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #d5df73 0, #93a848 70%, #66762a 100%);
+    box-shadow: 0 0 16px rgba(214,223,115,.65);
+}
+
+.legend-pot::before {
+    inset: 9px 8px 10px;
+    background: #607351;
+    border-radius: 45% 45% 38% 38%;
+    box-shadow: inset 0 -4px 0 rgba(0,0,0,.12);
+}
+
+.legend-dragon::before {
+    inset: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(213,245,204,.9), rgba(91,148,79,.9) 62%, rgba(91,148,79,.2) 100%);
+}
+
+@media (max-width: 980px) {
+    .snake-shell {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .snake-board-card,
+    .snake-info-card {
+        padding: 18px;
+    }
+
+    .snake-board-heading {
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+
+    .snake-tea-label {
+        text-align: left;
+    }
+
+    .snake-stats,
+    .snake-meter-group {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .snake-stats,
+    .snake-meter-group {
+        grid-template-columns: 1fr;
+    }
+
+    .snake-board-card::before,
+    .snake-info-card::before {
+        left: 18px;
+        width: 58px;
+    }
+
+    .snake-board-card::after,
+    .snake-info-card::after {
+        right: 18px;
+        width: 38px;
+    }
+}
+
+/* Tea Garden Snake v4: difficulty start screen and stacked/frozen effect HUD */
+.snake-board-meta {
+    display: grid;
+    gap: 4px;
+    justify-items: end;
+}
+
+.snake-level-label {
+    margin: 0;
+    max-width: none;
+    text-align: right;
+    font-size: .9rem;
+    color: var(--brown);
+}
+
+.snake-level-label strong {
+    color: var(--forest);
+}
+
+.snake-overlay[data-mode="start"] .snake-overlay-card {
+    width: min(100%, 460px);
+    padding: 28px;
+}
+
+.snake-difficulty-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.snake-difficulty-grid[hidden],
+.snake-overlay-actions[hidden] {
+    display: none !important;
+}
+
+.difficulty-card {
+    min-height: 96px;
+    padding: 14px 10px;
+    border: 2px solid var(--mustard);
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(246,237,218,.96));
+    color: var(--brown);
+    font: inherit;
+    cursor: pointer;
+    box-shadow: 0 7px 14px rgba(70,58,47,.08);
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+
+.difficulty-card strong,
+.difficulty-card span {
+    display: block;
+}
+
+.difficulty-card strong {
+    margin-bottom: 5px;
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    color: var(--forest);
+}
+
+.difficulty-card span {
+    font-size: .86rem;
+}
+
+.difficulty-card:hover,
+.difficulty-card:focus-visible {
+    transform: translateY(-2px);
+    background: var(--sage);
+    border-color: var(--forest);
+}
+
+.snake-effect-chip {
+    gap: 8px;
+    padding: 7px 10px 7px 7px;
+}
+
+.snake-effect-icon {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+}
+
+.snake-effect-copy {
+    display: grid;
+    gap: 0;
+    line-height: 1.15;
+}
+
+.snake-effect-copy strong,
+.snake-effect-copy span {
+    display: block;
+}
+
+.snake-effect-copy strong {
+    font-size: .82rem;
+}
+
+.snake-effect-copy span {
+    margin-top: 2px;
+    font-size: .76rem;
+    color: var(--brown);
+}
+
+.snake-effect-icon.legend-cup::after {
+    right: -1px;
+    top: 9px;
+    width: 7px;
+    height: 8px;
+    border-width: 2px;
+}
+
+@media (max-width: 760px) {
+    .snake-board-meta {
+        justify-items: start;
+    }
+
+    .snake-level-label {
+        text-align: left;
+    }
+}
+
+@media (max-width: 520px) {
+    .snake-difficulty-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .difficulty-card {
+        min-height: 72px;
+    }
+}
+
+/* Tea Garden Snake v5: custom board, round prototype snake, and clearer spacing */
+.snake-canvas-frame {
+    border-radius: 26px;
+    border: 3px solid #7b5c2d;
+    box-shadow:
+        0 0 0 3px rgba(205, 163, 73, .32),
+        0 18px 30px rgba(70,58,47,.18);
+    background: #8f7848;
+}
+
+#snake-canvas {
+    border-radius: 22px;
+    background: #aa925d;
+}
+
+.snake-meter-group {
+    margin-top: 30px;
+}
+
+.snake-how-to {
+    margin-top: 34px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(70,58,47,.16);
+}
+
+.snake-how-to h3 {
+    margin-top: 4px;
+    color: var(--forest);
+}
+
+.snake-how-to p:last-child {
+    margin-bottom: 0;
+}
+
+.game-status {
+    margin-top: 26px;
+}
+
+@media (max-width: 760px) {
+    .snake-meter-group {
+        margin-top: 24px;
+    }
+
+    .snake-how-to {
+        margin-top: 28px;
+        padding-top: 20px;
+    }
+}
+
+
+/* Tea Garden Snake v6: integrated dragon and item art assets */
+.legend-icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.legend-icon::before,
+.legend-icon::after {
+    content: none !important;
+    display: none !important;
+}
+
+.legend-leaf {
+    background-image: url('assets/images/snake/item-tea-leaf.png');
+}
+
+.legend-cup {
+    background-image: url('assets/images/snake/item-tea-cup.png');
+}
+
+.legend-lotus {
+    background-image: url('assets/images/snake/item-white-lotus-tile.png');
+}
+
+.legend-jasmine {
+    background-image: url('assets/images/snake/item-jasmine-blossom.png');
+}
+
+.legend-seed {
+    background-image: url('assets/images/snake/item-lotus-seed.png');
+}
+
+.legend-pot {
+    background-image: url('assets/images/snake/item-teapot.png');
+}
+
+.legend-dragon {
+    background-image: url('assets/images/snake/item-dragon-tea.png');
+    filter: hue-rotate(-18deg) saturate(1.12) brightness(1.04);
+}
+
+.snake-effect-chip {
+    align-items: center;
+}
+
+.snake-effect-icon {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+}
+
+
+/* Tea Garden Snake v6: use uploaded item art in the sidebar and effect chips */
+.legend-leaf,
+.legend-cup,
+.legend-lotus,
+.legend-jasmine,
+.legend-seed,
+.legend-pot {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: drop-shadow(0 2px 4px rgba(70,58,47,.18));
+}
+
+.legend-leaf::before,
+.legend-leaf::after,
+.legend-cup::before,
+.legend-cup::after,
+.legend-lotus::before,
+.legend-lotus::after,
+.legend-jasmine::before,
+.legend-jasmine::after,
+.legend-seed::before,
+.legend-seed::after,
+.legend-pot::before,
+.legend-pot::after {
+    content: none !important;
+}
+
+.legend-leaf {
+    background-image: url('assets/images/snake/item-tea-leaf.png');
+}
+
+.legend-cup {
+    background-image: url('assets/images/snake/item-tea-cup.png');
+}
+
+.legend-lotus {
+    background-image: url('assets/images/snake/item-white-lotus-tile.png');
+}
+
+.legend-jasmine {
+    background-image: url('assets/images/snake/item-jasmine-blossom.png');
+}
+
+.legend-seed {
+    background-image: url('assets/images/snake/item-lotus-seed.png');
+}
+
+.legend-pot {
+    background-image: url('assets/images/snake/item-teapot.png');
+}
+
+/* ===== Secret page: Jasmine Dragon garden gate ===== */
+.secret-garden-gate {
+    min-height: 0;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    padding: clamp(28px, 5vw, 48px);
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(221, 230, 200, .58), transparent 48%),
+        rgba(251, 248, 241, .94);
+}
+
+.secret-garden-gate::before {
+    content: none;
+    display: none;
+}
+
+.secret-garden-promo {
+    display: block;
+    width: clamp(132px, 18vw, 190px);
+    aspect-ratio: 1;
+    object-fit: contain;
+    margin: 0 auto 4px;
+    filter: drop-shadow(0 10px 18px rgba(54, 46, 37, .16));
+}
+
+.secret-garden-gate h3 {
+    margin: 0;
+    color: var(--forest);
+    font-size: clamp(1.55rem, 4vw, 2.1rem);
+}
+
+.secret-gate-copy {
+    max-width: 620px;
+    margin: 0 auto 8px;
+    text-align: center;
+}
+
+.secret-password-form {
+    width: min(100%, 520px);
+    display: grid;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+.secret-password-field {
+    display: grid;
+    gap: 7px;
+    text-align: left;
+}
+
+.secret-password-field label {
+    font-weight: 800;
+    color: var(--brown);
+}
+
+.secret-password-field input {
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 14px;
+    border: 2px solid rgba(70, 58, 47, .5);
+    border-radius: 12px;
+    background: rgba(255, 253, 248, .96);
+    color: var(--brown);
+    font: inherit;
+}
+
+.secret-password-field input:focus-visible {
+    outline: 3px solid var(--mustard);
+    outline-offset: 2px;
+    border-color: var(--forest);
+}
+
+.secret-password-field input[aria-invalid="true"] {
+    border-color: #9b382f;
+}
+
+.secret-password-error {
+    min-height: 1.35em;
+    margin: 0;
+    color: #842f29;
+    font-size: .92rem;
+    font-weight: 700;
+}
+
+.secret-enter-button {
+    justify-self: center;
+    min-height: 46px;
+    padding: 11px 22px;
+    border: 2px solid var(--mustard);
+    border-radius: 999px;
+    background: var(--forest);
+    color: var(--cream);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+
+.secret-enter-button:hover,
+.secret-enter-button:focus-visible {
+    background: var(--mustard);
+    color: var(--brown);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 560px) {
+    .secret-garden-gate {
+        padding: 24px 18px;
+    }
+
+    .secret-garden-promo {
+        width: 138px;
+    }
+
+    .secret-enter-button {
+        width: 100%;
+    }
+}
+/* ===== End Secret page garden gate ===== */

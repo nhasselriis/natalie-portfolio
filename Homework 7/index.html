@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 7 - Interactive DOM Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1 id="pageTitle">My Interactive Task Board</h1>
+    <p id="message">Click the button to update this message.</p>
+
+    <button id="messageButton" type="button">Change Message</button>
+
+    <section>
+      <label for="titleInput">Type to style the title:</label>
+      <input id="titleInput" type="text" placeholder="Type something...">
+      <p class="hint">Typing changes the title style in real time.</p>
+    </section>
+
+    <section>
+      <label for="taskInput">Add a task:</label>
+      <div class="task-controls">
+        <input id="taskInput" type="text" placeholder="Example: Finish homework">
+        <button id="addTaskButton" type="button">Add Task</button>
+      </div>
+
+      <ul id="taskList"></ul>
+      <p class="hint">Click a task to remove it.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

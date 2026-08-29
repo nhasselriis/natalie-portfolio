@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasmine Dragon: Zen Garden</title>
+    <script>
+        if (sessionStorage.getItem('jasmineDragonAccess') !== 'unlocked') {
+            window.location.replace('secret.html#garden-gate');
+        }
+    </script>
+    <link rel="icon" type="image/png" href="https://images.squarespace-cdn.com/content/v1/68d9654d0cba3d433908582a/607da867-b0da-49b7-b2d4-81282bc70b76/2021-03-03-05.16.png?format=1000w">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header>
+    <h1>N.K. Hasselriis Portfolio</h1>
+    <nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="notebook.html">Notes</a>
+        <a href="secret.html">Secret</a>
+    </nav>
+</header>
+
+<main id="main-content">
+    <section class="snake-intro" aria-labelledby="snake-title">
+        <p class="section-kicker">Hidden Garden</p>
+        <h2 id="snake-title">Jasmine Dragon: Zen Garden</h2>
+        <p class="section-intro">A hidden playable garden tucked behind the Secret page. Guide the Jasmine Dragon through the Zen Garden, collect tea and lotus pieces, build combos, and stack power-ups as the garden gets faster.</p>
+    </section>
+
+    <section class="snake-prototype" aria-labelledby="snake-game-title">
+        <div class="snake-shell">
+            <div class="snake-board-card">
+                <div class="snake-board-heading">
+                    <div>
+                        <p class="section-kicker">Garden Board</p>
+                        <h3 id="snake-game-title">Jasmine Dragon Garden</h3>
+                    </div>
+                    <div class="snake-board-meta">
+                        <p class="snake-tea-label"><span aria-hidden="true">🍵</span> Today&apos;s Tea: <strong>Jasmine Green</strong></p>
+                        <p class="snake-level-label">Level: <strong id="difficulty-label">Choose a level</strong></p>
+                    </div>
+                </div>
+
+                <div class="snake-stats" aria-label="Scoreboard">
+                    <div class="snake-stat-card">
+                        <span class="snake-stat-label">Score</span>
+                        <span class="snake-stat-value" id="score">0</span>
+                    </div>
+                    <div class="snake-stat-card">
+                        <span class="snake-stat-label">Best</span>
+                        <span class="snake-stat-value" id="best-score">0</span>
+                    </div>
+                    <div class="snake-stat-card">
+                        <span class="snake-stat-label">White Lotus</span>
+                        <span class="snake-stat-value" id="lotus-count">0</span>
+                    </div>
+                    <div class="snake-stat-card">
+                        <span class="snake-stat-label">Combo</span>
+                        <span class="snake-stat-value" id="combo-count">x1</span>
+                    </div>
+                </div>
+
+                <div class="snake-canvas-frame">
+                    <canvas id="snake-canvas" width="540" height="540" aria-label="Jasmine Dragon Zen Garden game board"></canvas>
+                    <div class="snake-overlay" id="snake-overlay" aria-hidden="false">
+                        <div class="snake-overlay-card">
+                            <p class="section-kicker" id="overlay-kicker">Choose Your Garden</p>
+                            <h3 id="overlay-title">Jasmine Dragon: Zen Garden</h3>
+                            <p id="overlay-message">Choose a starting pace. The level only changes how quickly the snake moves.</p>
+
+                            <div class="snake-difficulty-grid" id="difficulty-actions" aria-label="Choose difficulty">
+                                <button type="button" class="difficulty-card" data-difficulty="easy">
+                                    <strong>Easy</strong>
+                                    <span>Calm pace</span>
+                                </button>
+                                <button type="button" class="difficulty-card" data-difficulty="medium">
+                                    <strong>Medium</strong>
+                                    <span>Balanced pace</span>
+                                </button>
+                                <button type="button" class="difficulty-card" data-difficulty="hard">
+                                    <strong>Hard</strong>
+                                    <span>Quick pace</span>
+                                </button>
+                            </div>
+
+                            <div class="snake-overlay-actions" id="pause-actions" hidden>
+                                <button type="button" class="snake-button" id="overlay-resume">Resume</button>
+                                <button type="button" class="snake-button snake-button-alt" id="overlay-new">Choose Level</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="snake-meter-group" aria-label="Active meters">
+                    <div class="snake-meter-card">
+                        <div class="snake-meter-heading">
+                            <span>Combo Timer</span>
+                            <strong id="combo-label">Ready</strong>
+                        </div>
+                        <div class="snake-meter-track"><span id="combo-fill"></span></div>
+                    </div>
+                    <div class="snake-meter-card">
+                        <div class="snake-meter-heading">
+                            <span>Active Effects</span>
+                            <strong id="effects-summary">None</strong>
+                        </div>
+                        <div class="snake-effect-tags" id="effects-list" aria-live="polite"></div>
+                    </div>
+                </div>
+
+                <p class="game-status" id="game-status" aria-live="polite">Choose a level to begin, then use the arrow keys or WASD to guide the snake.</p>
+            </div>
+
+            <aside class="snake-sidebar" aria-label="Game details and item guide">
+                <article class="snake-info-card" aria-labelledby="how-to-play-title">
+                    <p class="section-kicker">How It Plays</p>
+                    <h3 id="how-to-play-title">Guide the Garden</h3>
+                    <p>Use <strong>WASD</strong> or the <strong>arrow keys</strong> to guide the snake. Your first movement starts the garden. Press <strong>P</strong> or <strong>Esc</strong> to pause and resume. Power-up and combo timers freeze while the garden is paused.</p>
+                </article>
+
+                <article class="snake-info-card">
+                    <p class="section-kicker">Items</p>
+                    <h3>Garden Pickups</h3>
+                    <ul class="snake-legend-list">
+                        <li><span class="legend-icon legend-leaf"></span><div><strong>Tea Leaf</strong><span>+1 point</span></div></li>
+                        <li><span class="legend-icon legend-cup"></span><div><strong>Tea Cup</strong><span>+3 points</span></div></li>
+                        <li><span class="legend-icon legend-lotus"></span><div><strong>White Lotus Tile</strong><span>+10 points and 4 double-score charges</span></div></li>
+                    </ul>
+                </article>
+
+                <article class="snake-info-card">
+                    <p class="section-kicker">Power Ups</p>
+                    <h3>Garden Blessings</h3>
+                    <ul class="snake-legend-list">
+                        <li><span class="legend-icon legend-jasmine"></span><div><strong>Jasmine Blossom</strong><span>Restores the combo timer</span></div></li>
+                        <li><span class="legend-icon legend-seed"></span><div><strong>Lotus Seed</strong><span>+8 seconds of invincibility; stacks</span></div></li>
+                        <li><span class="legend-icon legend-pot"></span><div><strong>Teapot</strong><span>Grows the snake by 3 segments</span></div></li>
+                        <li><span class="legend-icon legend-dragon"></span><div><strong>Dragon Tea</strong><span>+6.5 seconds of speed boost; stacks</span></div></li>
+                    </ul>
+                </article>
+
+            </aside>
+        </div>
+    </section>
+</main>
+
+<footer><p>© 2026 Natalie Hasselriis</p></footer>
+<script src="snake.js"></script>
+</body>
+</html>

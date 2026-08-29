@@ -1,6 +1,6 @@
 # N.K. Hasselriis Portfolio
 
-A responsive five-page personal portfolio built with semantic HTML, a shared CSS file, and a small JavaScript file for accessible contact-form validation. The visual style combines parchment, taped journal cards, warm Earth Kingdom-inspired colours, and character sign-offs inspired by *Avatar: The Last Airbender*.
+A responsive five-page personal portfolio built with semantic HTML, a shared CSS file, and a small JavaScript file for accessible contact-form validation. The visual style combines parchment, taped journal cards, warm Earth Kingdom-inspired colors, and character sign-offs inspired by *Avatar: The Last Airbender*.
 
 ## Pages
 
@@ -8,7 +8,8 @@ A responsive five-page personal portfolio built with semantic HTML, a shared CSS
 - `about.html` — biography, creative interests and hobbies, contact form, and Katara sign-off
 - `projects.html` — creative projects including the Futurama podcast, fountain pen comic, and *Anastasia* art piece, with King Bumi sign-off
 - `notebook.html` — notebook-style Notes page with Sokka sign-off
-- `secret.html` — Secret page with Toph sign-off
+- `secret.html` — Secret landing page with Toph sign-off, the “Secret Tunnel!” easter egg, and the password gate for Jasmine Dragon: Zen Garden
+- `tea-garden-snake.html` — hidden playable page for *Jasmine Dragon: Zen Garden*
 
 ## Visual Design and Gestalt Principles
 
@@ -35,6 +36,19 @@ Each page ends with a different character mascot and themed divider:
 - **Projects:** King Bumi — Earth Kingdom-inspired divider
 - **Notes:** Sokka — boomerang and food divider
 - **Secret:** Toph — earth-themed divider
+
+The character artwork is treated as a footer mascot.
+
+## Secret Tunnel Easter Egg
+
+The Secret page includes a small mountain button (`⛰️`) positioned above the footer near the bottom-right corner.
+
+When activated:
+
+- Chong’s `chong-secret-tunnel.gif` slides smoothly upward from below the viewport.
+- It remains visible briefly, then slides straight back below the viewport.
+- The trigger remains separate from Toph so her footer size and placement are unaffected by the easter egg.
+- A reduced-motion version is included with `prefers-reduced-motion` support.
 
 ## Contact Form
 
@@ -67,7 +81,9 @@ The About page includes a compact contact section with a larger form column and 
 ├── projects.html
 ├── notebook.html
 ├── secret.html
+├── tea-garden-snake.html
 ├── style.css
+├── snake.js
 ├── contact-form.js
 ├── README.md
 └── assets/
@@ -83,3 +99,11 @@ The About page includes a compact contact section with a larger form column and 
         ├── chong-secret-tunnel.gif
         └── additional portfolio images
 ```
+
+
+## Jasmine Dragon Integration
+
+- The Secret page now serves as the landing page for *Jasmine Dragon: Zen Garden*.
+- The former coming-soon placeholder has been replaced by an accessible password form.
+- A successful entry stores a session-only unlock flag and redirects to `tea-garden-snake.html`.
+- Direct visits to the game page redirect back to the Secret page unless the garden has been unlocked during that browser session.
