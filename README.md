@@ -1,6 +1,6 @@
 # N.K. Hasselriis Portfolio
 
-A responsive five-page personal portfolio built with semantic HTML, a shared CSS file, and a small JavaScript file for accessible contact-form validation. The visual style combines parchment, taped journal cards, warm Earth Kingdom-inspired colors, and character sign-offs inspired by *Avatar: The Last Airbender*.
+A responsive five-page personal portfolio built with semantic HTML, a shared CSS file, and a small JavaScript file for accessible contact-form validation. The visual style combines parchment, taped journal cards, warm Earth Kingdom-inspired colours, and character sign-offs inspired by *Avatar: The Last Airbender*.
 
 ## Pages
 
