@@ -2186,3 +2186,482 @@ footer p {
     }
 }
 /* ===== End Secret page garden gate ===== */
+
+/* ===== Restored light / dark theme system (dark is the default) ===== */
+:root {
+    color-scheme: light;
+    --page-start: #fbf8f1;
+    --page-end: #f4eedf;
+    --surface: rgba(255, 255, 255, .58);
+    --surface-strong: rgba(251, 248, 241, .92);
+    --surface-paper: #f6edda;
+    --line: rgba(70, 58, 47, .18);
+    --shadow: rgba(70, 58, 47, .10);
+    --shadow-strong: rgba(70, 58, 47, .22);
+    --input-bg: #fffdf8;
+    --muted-text: #5b4d40;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --cream: #f1e7d2;
+    --forest: #315b3f;
+    --sky: #6f9eb8;
+    --mustard: #d6af57;
+    --brown: #eee4cf;
+    --sage: #465545;
+    --paper: #302f28;
+    --page-start: #151915;
+    --page-end: #222720;
+    --surface: rgba(37, 43, 36, .94);
+    --surface-strong: rgba(46, 52, 43, .96);
+    --surface-paper: #302f28;
+    --line: rgba(241, 231, 210, .17);
+    --shadow: rgba(0, 0, 0, .30);
+    --shadow-strong: rgba(0, 0, 0, .48);
+    --input-bg: #1f241f;
+    --muted-text: #cec2ad;
+}
+
+body {
+    background: linear-gradient(180deg, var(--page-start), var(--page-end));
+    transition: background-color .35s ease, color .35s ease;
+}
+
+section {
+    background: var(--surface);
+    border-color: var(--line);
+    box-shadow: 0 14px 30px var(--shadow);
+    transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease, color .35s ease;
+}
+
+.feature-row,
+.project-list .feature-row,
+.campus-features .feature-row {
+    background: var(--surface-strong);
+    border-color: var(--line);
+    box-shadow: 0 8px 18px var(--shadow);
+}
+
+.feature-row.reverse,
+.project-list .feature-row.reverse,
+.campus-features .feature-row.reverse {
+    border-left-color: var(--line);
+}
+
+html[data-theme="dark"] header {
+    background: #173423;
+}
+
+html[data-theme="dark"] nav a {
+    border-color: rgba(241, 231, 210, .28);
+    background: rgba(241, 231, 210, .06);
+}
+
+html[data-theme="dark"] nav a:hover,
+html[data-theme="dark"] nav a:focus,
+html[data-theme="dark"] nav a[aria-current="page"] {
+    background: #e1d3b8;
+    color: #302a22;
+    border-color: var(--mustard);
+}
+
+/* Keep green accents readable against dark surfaces without turning green controls light. */
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] .section-kicker,
+html[data-theme="dark"] .feature-copy h3,
+html[data-theme="dark"] .earth-kingdom-mark,
+html[data-theme="dark"] .character-note cite,
+html[data-theme="dark"] .contact-sidebar h3,
+html[data-theme="dark"] .notebook-lead,
+html[data-theme="dark"] .snake-board-heading h3,
+html[data-theme="dark"] .snake-info-card h3,
+html[data-theme="dark"] .snake-stat-label,
+html[data-theme="dark"] .snake-tea-label,
+html[data-theme="dark"] .snake-meter-heading strong,
+html[data-theme="dark"] .game-status,
+html[data-theme="dark"] .snake-level-label strong,
+html[data-theme="dark"] .secret-garden-gate h3 {
+    color: #c7dfbc;
+}
+
+html[data-theme="dark"] .project-label {
+    color: #f0c96a;
+}
+
+html[data-theme="dark"] footer {
+    background: #10140f;
+}
+
+html[data-theme="dark"] .archway-feature {
+    background:
+        linear-gradient(rgba(45, 50, 42, .96), rgba(39, 44, 37, .96)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 31px, rgba(111, 158, 184, .10) 32px);
+    border-color: var(--line);
+    box-shadow: 0 13px 24px var(--shadow);
+}
+
+html[data-theme="dark"] .archway-cover-card {
+    background: #252922;
+    border-color: var(--line);
+    box-shadow: 0 8px 18px var(--shadow-strong);
+}
+
+html[data-theme="dark"] .character-note {
+    background:
+        linear-gradient(rgba(47, 51, 43, .97), rgba(43, 47, 40, .98)),
+        repeating-linear-gradient(0deg, transparent 0, transparent 29px, rgba(111, 158, 184, .10) 30px);
+    border-color: var(--line);
+    box-shadow: 0 10px 20px var(--shadow);
+}
+
+html[data-theme="dark"] .character-note::before,
+html[data-theme="dark"] .archway-feature::before,
+html[data-theme="dark"] .snake-board-card::before,
+html[data-theme="dark"] .snake-info-card::before,
+html[data-theme="dark"] .notebook-paper::before {
+    opacity: .72;
+}
+
+html[data-theme="dark"] .contact-form,
+html[data-theme="dark"] .contact-sidebar {
+    background: var(--surface-paper);
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .form-field label,
+html[data-theme="dark"] .contact-reason legend,
+html[data-theme="dark"] .secret-password-field label {
+    color: var(--brown);
+}
+
+html[data-theme="dark"] .form-field input,
+html[data-theme="dark"] .form-field textarea,
+html[data-theme="dark"] .secret-password-field input {
+    background: var(--input-bg);
+    color: var(--brown);
+    border-color: rgba(238, 228, 207, .42);
+}
+
+html[data-theme="dark"] .form-field input::placeholder,
+html[data-theme="dark"] .form-field textarea::placeholder {
+    color: #a99f8f;
+}
+
+html[data-theme="dark"] .field-help,
+html[data-theme="dark"] .snake-effect-copy span {
+    color: var(--muted-text);
+}
+
+html[data-theme="dark"] .form-status-error,
+html[data-theme="dark"] .field-error,
+html[data-theme="dark"] .secret-password-error {
+    color: #ffaaa1;
+}
+
+html[data-theme="dark"] .form-status-success {
+    color: #a8d6ad;
+}
+
+html[data-theme="dark"] .notebook-section {
+    background: var(--surface);
+}
+
+html[data-theme="dark"] .notebook-paper {
+    background:
+        linear-gradient(90deg, transparent 0 48px, rgba(214,175,87,.34) 49px, rgba(214,175,87,.34) 51px, transparent 52px),
+        repeating-linear-gradient(0deg, #292d27 0, #292d27 31px, rgba(111,158,184,.18) 32px, #292d27 33px);
+    border-color: var(--line);
+    box-shadow: 0 12px 24px var(--shadow);
+}
+
+html[data-theme="dark"] .secret-feature-card,
+html[data-theme="dark"] .secret-garden-gate {
+    border-color: var(--line);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(70, 85, 69, .65), transparent 48%),
+        rgba(42, 47, 39, .97);
+    box-shadow: 0 18px 38px var(--shadow);
+}
+
+html[data-theme="dark"] .secret-garden-promo {
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .34));
+}
+
+html[data-theme="dark"] .snake-board-card,
+html[data-theme="dark"] .snake-info-card {
+    background: rgba(43, 48, 40, .97);
+    border-color: var(--line);
+    box-shadow: 0 14px 30px var(--shadow);
+}
+
+html[data-theme="dark"] .snake-board-card::after,
+html[data-theme="dark"] .snake-info-card::after {
+    background: rgba(215, 204, 181, .55);
+}
+
+html[data-theme="dark"] .snake-stat-card,
+html[data-theme="dark"] .snake-meter-card,
+html[data-theme="dark"] .snake-overlay-card,
+html[data-theme="dark"] .difficulty-card {
+    background: linear-gradient(180deg, rgba(56, 59, 49, .98), rgba(45, 49, 41, .98));
+    border-color: var(--line);
+    color: var(--brown);
+}
+
+html[data-theme="dark"] .snake-button-alt {
+    background: #30362e;
+    color: var(--brown);
+}
+
+html[data-theme="dark"] .snake-meter-track {
+    background: rgba(238, 228, 207, .13);
+}
+
+html[data-theme="dark"] .snake-effect-chip {
+    background: rgba(133, 174, 125, .15);
+    color: #d5e8cc;
+}
+
+html[data-theme="dark"] .snake-effect-chip-muted {
+    background: rgba(238, 228, 207, .10);
+    color: #ddd2bd;
+}
+
+html[data-theme="dark"] .difficulty-card:hover,
+html[data-theme="dark"] .difficulty-card:focus-visible {
+    background: #485943;
+}
+
+/* The illustrated game board and supplied artwork retain their authored colors. */
+html[data-theme="dark"] #snake-canvas,
+html[data-theme="dark"] .secret-garden-promo,
+html[data-theme="dark"] .character-mascot img,
+html[data-theme="dark"] .profile-photo,
+html[data-theme="dark"] .feature-media img,
+html[data-theme="dark"] .project-media img,
+html[data-theme="dark"] .archway-cover-card img {
+    color-scheme: normal;
+}
+
+/* Floating animated theme control */
+.theme-toggle {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    z-index: 1000;
+    width: clamp(58px, 6vw, 72px);
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(0 7px 8px rgba(0, 0, 0, .28));
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px) scale(1.025);
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, .34));
+}
+
+.theme-toggle:active {
+    transform: translateY(0) scale(.98);
+}
+
+.theme-toggle:focus-visible {
+    outline: 4px solid var(--mustard);
+    outline-offset: 5px;
+}
+
+.theme-toggle img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+@media (max-width: 600px) {
+    .theme-toggle {
+        left: 10px;
+        bottom: 10px;
+        width: 56px;
+    }
+
+    html[data-theme="dark"] .notebook-paper {
+        background:
+            linear-gradient(90deg, transparent 0 28px, rgba(214,175,87,.34) 29px, rgba(214,175,87,.34) 31px, transparent 32px),
+            repeating-linear-gradient(0deg, #292d27 0, #292d27 31px, rgba(111,158,184,.18) 32px, #292d27 33px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle:hover,
+    .theme-toggle:active {
+        transform: none;
+    }
+}
+/* ===== End restored theme system ===== */
+
+/* ===== Dark-theme polish pass: notebook sections and Secret Tunnel ===== */
+/* The Secret page established the target dark palette: deep olive surfaces,
+   warm cream copy, sage accents, and mustard borders. Apply that language to
+   the notebook-style Campus, Interests, and Projects areas as well. */
+html[data-theme="dark"] #campus-edu,
+html[data-theme="dark"] #projects-gallery {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(214, 175, 87, .08), transparent 28%),
+        linear-gradient(180deg, rgba(38, 45, 37, .98), rgba(31, 37, 31, .98));
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] #personal-interests {
+    background: linear-gradient(180deg, rgba(35, 42, 35, .97), rgba(30, 36, 30, .97));
+    border-color: var(--line);
+}
+
+html[data-theme="dark"] .interest-list .feature-row,
+html[data-theme="dark"] .campus-features .feature-row,
+html[data-theme="dark"] .project-list .feature-row {
+    background:
+        linear-gradient(rgba(47, 54, 45, .97), rgba(42, 49, 41, .97)),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 31px,
+            rgba(111, 158, 184, .10) 32px
+        );
+    border-color: rgba(241, 231, 210, .17);
+    color: var(--brown);
+    box-shadow:
+        0 3px 0 rgba(0, 0, 0, .12),
+        0 13px 22px rgba(0, 0, 0, .24);
+}
+
+html[data-theme="dark"] .interest-list .feature-row p,
+html[data-theme="dark"] .campus-features .feature-row p,
+html[data-theme="dark"] .project-list .feature-row p,
+html[data-theme="dark"] #campus-edu .section-intro,
+html[data-theme="dark"] #projects-gallery .section-intro,
+html[data-theme="dark"] #personal-interests .section-intro {
+    color: #eee4cf;
+}
+
+html[data-theme="dark"] .interest-list .feature-media img,
+html[data-theme="dark"] .campus-features .feature-media img,
+html[data-theme="dark"] .project-list .project-media img {
+    background: #222820;
+    border-color: rgba(241, 231, 210, .20);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, .28);
+}
+
+html[data-theme="dark"] .campus-features .badge-media img {
+    background: rgba(31, 37, 31, .82);
+}
+
+/* Keep the Secret Tunnel title readable in dark mode.  The base rule uses
+   --cream for the background and --brown for the text; both become light in
+   dark mode, so give the label a deliberately dark paper surface instead. */
+html[data-theme="dark"] .secret-tunnel-label {
+    background: #30372e;
+    color: #f1e7d2;
+    border-color: rgba(214, 175, 87, .62);
+    box-shadow: 0 7px 16px rgba(0, 0, 0, .36);
+}
+
+/* ===== Smooth theme crossfade pass ===== */
+/* Chromium-based browsers use the View Transitions API for a true crossfade,
+   which also softens changes to gradients and notebook-paper backgrounds. */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: .52s;
+    animation-timing-function: ease-in-out;
+}
+
+/* Fallback for browsers without View Transitions.  These rules are active
+   only while the theme is changing, so ordinary hover and game animations
+   keep their original timing. */
+html.theme-transitioning body,
+html.theme-transitioning header,
+html.theme-transitioning footer,
+html.theme-transitioning main,
+html.theme-transitioning section,
+html.theme-transitioning article,
+html.theme-transitioning nav,
+html.theme-transitioning nav a,
+html.theme-transitioning h1,
+html.theme-transitioning h2,
+html.theme-transitioning h3,
+html.theme-transitioning h4,
+html.theme-transitioning p,
+html.theme-transitioning label,
+html.theme-transitioning legend,
+html.theme-transitioning input,
+html.theme-transitioning textarea,
+html.theme-transitioning button,
+html.theme-transitioning .feature-row,
+html.theme-transitioning .project-label,
+html.theme-transitioning .archway-feature,
+html.theme-transitioning .archway-cover-card,
+html.theme-transitioning .character-note,
+html.theme-transitioning .contact-form,
+html.theme-transitioning .contact-sidebar,
+html.theme-transitioning .notebook-section,
+html.theme-transitioning .notebook-paper,
+html.theme-transitioning .secret-feature-card,
+html.theme-transitioning .secret-garden-gate,
+html.theme-transitioning .secret-tunnel-label,
+html.theme-transitioning .snake-board-card,
+html.theme-transitioning .snake-info-card,
+html.theme-transitioning .snake-stat-card,
+html.theme-transitioning .snake-meter-card,
+html.theme-transitioning .snake-overlay-card,
+html.theme-transitioning .difficulty-card,
+html.theme-transitioning .snake-button,
+html.theme-transitioning .snake-effect-chip {
+    transition-property: background-color, color, border-color, box-shadow, opacity;
+    transition-duration: .52s;
+    transition-timing-function: ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 0s;
+    }
+
+    html.theme-transitioning body,
+    html.theme-transitioning header,
+    html.theme-transitioning footer,
+    html.theme-transitioning main,
+    html.theme-transitioning section,
+    html.theme-transitioning article,
+    html.theme-transitioning nav,
+    html.theme-transitioning nav a,
+    html.theme-transitioning h1,
+    html.theme-transitioning h2,
+    html.theme-transitioning h3,
+    html.theme-transitioning h4,
+    html.theme-transitioning p,
+    html.theme-transitioning label,
+    html.theme-transitioning legend,
+    html.theme-transitioning input,
+    html.theme-transitioning textarea,
+    html.theme-transitioning button {
+        transition-duration: 0s;
+    }
+}
+/* ===== End smooth theme crossfade pass ===== */

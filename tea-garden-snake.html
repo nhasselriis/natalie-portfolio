@@ -10,7 +10,11 @@
         }
     </script>
     <link rel="icon" type="image/png" href="https://images.squarespace-cdn.com/content/v1/68d9654d0cba3d433908582a/607da867-b0da-49b7-b2d4-81282bc70b76/2021-03-03-05.16.png?format=1000w">
+    <script>
+        document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'dark';
+    </script>
     <link rel="stylesheet" href="style.css">
+    <script src="theme-toggle.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -149,6 +153,11 @@
     </section>
 </main>
 
+
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="true">
+    <img id="theme-toggle-image" src="assets/images/theme-toggle/night.png" alt="" aria-hidden="true">
+    <span class="visually-hidden" id="theme-toggle-text">Switch to light mode</span>
+</button>
 <footer><p>© 2026 Natalie Hasselriis</p></footer>
 <script src="snake.js"></script>
 </body>

@@ -84,6 +84,7 @@ The About page includes a compact contact section with a larger form column and 
 ├── tea-garden-snake.html
 ├── style.css
 ├── snake.js
+├── theme-toggle.js
 ├── contact-form.js
 ├── README.md
 └── assets/
@@ -107,3 +108,10 @@ The About page includes a compact contact section with a larger form column and 
 - The former coming-soon placeholder has been replaced by an accessible password form.
 - A successful entry stores a session-only unlock flag and redirects to `tea-garden-snake.html`.
 - Direct visits to the game page redirect back to the Secret page unless the garden has been unlocked during that browser session.
+
+
+## Light & Dark Mode
+
+- The portfolio now includes an animated light/dark mode toggle on every page, including the Secret page and *Jasmine Dragon: Zen Garden*.
+- Dark mode is the default on a visitor’s first load; the toggle saves the visitor’s chosen theme in `localStorage` for future visits.
+- Dark-mode colors were adjusted across cards, forms, notebook surfaces, headings, and game interface panels while preserving the authored colours of the game board and artwork.
