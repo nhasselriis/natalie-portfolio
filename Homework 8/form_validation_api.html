@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework 8 - Form Validation and API Fetch</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 1px;
+    }
+
+    .error {
+      color: #b00020;
+      min-height: 20px;
+      margin: 5px 0 0;
+      font-size: 0.9rem;
+    }
+
+    .success {
+      color: #176b2c;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      background: #2563eb;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #api-section {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    #api-result {
+      margin-top: 12px;
+      padding: 12px;
+      background: #eef2ff;
+      border-radius: 6px;
+      min-height: 44px;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Student Contact Form</h1>
+
+    <form id="contact-form" novalidate>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+        <p class="error" id="name-error"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+        <p class="error" id="email-error"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" min="1" required>
+        <p class="error" id="age-error"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="favorite-color">Favorite Color</label>
+        <input type="text" id="favorite-color" name="favorite-color" required>
+        <p class="error" id="favorite-color-error"></p>
+      </div>
+
+      <button type="submit">Submit Form</button>
+      <p id="form-message" aria-live="polite"></p>
+    </form>
+
+    <section id="api-section">
+      <h2>Public API Example</h2>
+      <button type="button" id="load-user">Load Sample User</button>
+      <div id="api-result" aria-live="polite">
+        Click the button to load data from the API.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message");
+
+    const fields = [
+      {
+        input: document.getElementById("name"),
+        error: document.getElementById("name-error")
+      },
+      {
+        input: document.getElementById("email"),
+        error: document.getElementById("email-error")
+      },
+      {
+        input: document.getElementById("age"),
+        error: document.getElementById("age-error")
+      },
+      {
+        input: document.getElementById("favorite-color"),
+        error: document.getElementById("favorite-color-error")
+      }
+    ];
+
+    // Clear each field's error as soon as the user starts correcting it.
+    fields.forEach(function(field) {
+      field.input.addEventListener("input", function() {
+        field.error.textContent = "";
+        formMessage.textContent = "";
+      });
+    });
+
+    form.addEventListener("submit", function(event) {
+      // Stop the browser from submitting/reloading the page.
+      event.preventDefault();
+
+      let formIsValid = true;
+
+      // Check every required field for an empty value.
+      fields.forEach(function(field) {
+        if (field.input.value.trim() === "") {
+          field.error.textContent = "This field is required.";
+          formIsValid = false;
+        }
+      });
+
+      // Format validation: email must contain an @ symbol.
+      const email = document.getElementById("email");
+      const emailError = document.getElementById("email-error");
+
+      if (email.value.trim() !== "" && !email.value.includes("@")) {
+        emailError.textContent = "Please enter a valid email address containing @.";
+        formIsValid = false;
+      }
+
+      if (formIsValid) {
+        formMessage.textContent = "Form submitted successfully!";
+        formMessage.className = "success";
+      } else {
+        formMessage.textContent = "Please correct the errors above.";
+        formMessage.className = "error";
+      }
+    });
+
+    // Bonus: fetch data from the free JSONPlaceholder public API.
+    const loadUserButton = document.getElementById("load-user");
+    const apiResult = document.getElementById("api-result");
+
+    loadUserButton.addEventListener("click", function() {
+      apiResult.textContent = "Loading...";
+
+      fetch("https://jsonplaceholder.typicode.com/users/1")
+        .then(function(response) {
+          if (!response.ok) {
+            throw new Error("The API request was not successful.");
+          }
+
+          return response.json();
+        })
+        .then(function(data) {
+          apiResult.innerHTML =
+            "<strong>Name:</strong> " + data.name +
+            "<br><strong>Email:</strong> " + data.email +
+            "<br><strong>Company:</strong> " + data.company.name;
+        })
+        .catch(function(error) {
+          apiResult.textContent = "Error: " + error.message;
+        });
+    });
+  </script>
+</body>
+</html>
