@@ -8,7 +8,7 @@
     <script>
         document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'dark';
     </script>
-    <link rel="stylesheet" href="style.css?v=20260910-2">
+    <link rel="stylesheet" href="style.css?v=20260910-3">
     <script src="theme-toggle.js?v=20260909-1" defer></script>
 </head>
 <body>
@@ -46,6 +46,7 @@
                         <button type="button" class="garden-tool" data-garden-tool="marker" aria-pressed="false"><span aria-hidden="true">🖍️</span><span>Marker</span></button>
                         <button type="button" class="garden-tool" data-garden-tool="brush" aria-pressed="false"><span aria-hidden="true">🖌️</span><span>Brush</span></button>
                         <button type="button" class="garden-tool" data-garden-tool="eraser" aria-pressed="false"><span aria-hidden="true">⌫</span><span>Eraser</span></button>
+                        <button type="button" class="garden-tool" data-garden-tool="hand" aria-pressed="false"><span aria-hidden="true">✋</span><span>Hand</span></button>
                     </div>
                 </div>
 
@@ -72,15 +73,23 @@
 
                 <div class="garden-tool-group garden-edit-actions">
                     <button type="button" class="garden-secondary-button" id="garden-undo" disabled>↶ Undo</button>
-                    <button type="button" class="garden-secondary-button" id="garden-clear" disabled>Clear mine</button>
+                    <button type="button" class="garden-secondary-button" id="garden-redo" disabled>↷ Redo</button>
+                    <button type="button" class="garden-secondary-button garden-clear-wide" id="garden-clear" disabled>Clear</button>
                 </div>
             </aside>
 
             <div class="garden-board-column">
-                <div class="garden-board" aria-label="Shared Garden Wall drawing area">
+                <div class="garden-board" id="garden-board-viewport" aria-label="Shared Garden Wall drawing area">
                     <canvas id="garden-saved-canvas" class="garden-canvas garden-saved-canvas" aria-hidden="true"></canvas>
                     <canvas id="garden-draft-canvas" class="garden-canvas garden-draft-canvas" tabindex="0" aria-label="Draw on the Garden Wall using mouse, touch, or stylus"></canvas>
-                    <p class="garden-board-hint">Draw here with a mouse, finger, or stylus.</p>
+                    <div class="garden-placement-frame" id="garden-placement-frame" aria-hidden="true"></div>
+                    <div class="garden-board-controls" aria-label="Garden Wall navigation">
+                        <button type="button" id="garden-zoom-out" class="garden-nav-button" aria-label="Zoom out">−</button>
+                        <button type="button" id="garden-zoom-reset" class="garden-nav-button garden-nav-reset" aria-label="Reset zoom">100%</button>
+                        <button type="button" id="garden-zoom-in" class="garden-nav-button" aria-label="Zoom in">+</button>
+                    </div>
+                    <p class="garden-position" id="garden-position" aria-live="polite">Garden position 0, 0</p>
+                    <p class="garden-board-hint" id="garden-board-hint">Draw here, or choose Hand to explore the wall.</p>
                 </div>
 
                 <div class="garden-sign-row">
@@ -94,7 +103,7 @@
             </div>
         </div>
 
-        <p class="garden-wall-note">Public visitors can add and view marks, but cannot edit or delete saved contributions. Unsaved strokes can still be undone or cleared before posting.</p>
+        <p class="garden-wall-note">Use the Hand tool to explore the larger Garden Wall. Your contribution is limited to one drawing-sized area; the first stroke anchors it where you are, and saved marks stay in that part of the wall for everyone to discover. Click the canvas first, then use Ctrl+Z to undo and Ctrl+Shift+Z or Ctrl+Y to redo.</p>
     </section>
 </main>
 
@@ -116,7 +125,7 @@
 <footer><p>© 2026 Natalie Hasselriis</p></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js?v=20260910-1"></script>
-<script src="garden-wall.js?v=20260910-2"></script>
+<script src="garden-wall.js?v=20260910-3"></script>
 <script src="konami-jimothy.js?v=20260909-1"></script>
 </body>
 </html>

@@ -26,6 +26,13 @@
     const statusDisplay = document.querySelector('#game-status');
     const touchDirectionButtons = document.querySelectorAll('[data-direction]');
     const touchPauseButton = document.querySelector('#touch-pause');
+    const scoreSubmitForm = document.querySelector('#score-submit-form');
+    const leaderboardName = document.querySelector('#leaderboard-name');
+    const submitScoreButton = document.querySelector('#submit-score-button');
+    const scoreSubmitStatus = document.querySelector('#score-submit-status');
+    const finalScoreValue = document.querySelector('#final-score-value');
+    const leaderboardList = document.querySelector('#snake-leaderboard');
+    const leaderboardStatus = document.querySelector('#leaderboard-status');
 
     const BOARD_TILES = 18;
     const BOARD_GRID_X = canvas.width * (124.13 / 1254);
@@ -74,6 +81,10 @@
     const SPEED_STACK_MULTIPLIER = 0.68;
     const MIN_SPEED_STEP = 42;
     const BEST_STORAGE_KEY = 'teaGardenSnakePrototypeBest';
+    const HIGH_SCORE_TABLE = 'tea_garden_hs';
+    const GAME_VERSION = '1.0';
+    const MAX_LEADERBOARD_NAME = 24;
+    const MAX_SUBMIT_SCORE = 9999999;
 
     const DIFFICULTIES = {
         easy: { label: 'Easy', step: 180 },
@@ -119,8 +130,14 @@
         growBy: 0,
         pauseStartedAt: 0,
         lastFrame: 0,
-        accumulator: 0
+        accumulator: 0,
+        scoreSubmitted: false
     };
+
+    let leaderboardClient = null;
+    let leaderboardChannel = null;
+
+    initializeLeaderboard();
 
     bestDisplay.textContent = String(state.best);
     prepareGarden();
@@ -140,6 +157,10 @@
     });
 
     overlayNew.addEventListener('click', () => showStartScreen());
+
+    if (scoreSubmitForm) {
+        scoreSubmitForm.addEventListener('submit', submitHighScore);
+    }
 
     touchDirectionButtons.forEach((button) => {
         button.addEventListener('pointerdown', (event) => {
@@ -207,6 +228,13 @@
         state.running = false;
         state.paused = false;
         state.gameOver = false;
+        state.scoreSubmitted = false;
+        if (scoreSubmitForm) scoreSubmitForm.hidden = true;
+        if (scoreSubmitStatus) scoreSubmitStatus.textContent = '';
+        if (submitScoreButton) {
+            submitScoreButton.disabled = false;
+            submitScoreButton.textContent = 'Submit Score';
+        }
         state.accumulator = 0;
         spawnItem();
         updateHud();
@@ -400,7 +428,15 @@
         state.running = false;
         state.gameOver = true;
         state.pauseStartedAt = Date.now();
-        openPauseOverlay('gameover', `The garden has gone still. Final score: ${state.score}.`);
+        openPauseOverlay('gameover', 'The garden has gone still. Add your name if you would like to place this run on the shared leaderboard.');
+        if (finalScoreValue) finalScoreValue.textContent = String(state.score);
+        if (scoreSubmitForm) scoreSubmitForm.hidden = false;
+        if (scoreSubmitStatus) {
+            scoreSubmitStatus.textContent = state.score > 0
+                ? 'Submitting is optional.'
+                : 'Score at least 1 point to submit a run.';
+        }
+        if (submitScoreButton) submitScoreButton.disabled = state.score < 1 || !leaderboardClient;
         setStatus(`Game over. Final score: ${state.score}.`);
     }
 
@@ -435,6 +471,7 @@
 
     function openPauseOverlay(mode, message) {
         overlay.dataset.mode = mode;
+        if (scoreSubmitForm && mode !== 'gameover') scoreSubmitForm.hidden = true;
         overlayKicker.textContent = mode === 'gameover' ? 'Garden Complete' : 'Pause Menu';
         overlayTitle.textContent = mode === 'gameover' ? 'The Garden Rests' : 'Tea Time';
         overlayMessage.textContent = message;
@@ -450,6 +487,139 @@
         overlay.setAttribute('hidden', '');
         overlay.setAttribute('aria-hidden', 'true');
         overlay.removeAttribute('data-mode');
+    }
+
+    function initializeLeaderboard() {
+        const config = window.GARDEN_SUPABASE;
+        if (!config || !window.supabase) {
+            if (leaderboardStatus) leaderboardStatus.textContent = 'Shared leaderboard unavailable.';
+            return;
+        }
+
+        try {
+            leaderboardClient = window.supabase.createClient(config.url, config.publishableKey);
+            loadLeaderboard();
+            leaderboardChannel = leaderboardClient
+                .channel('tea-garden-high-scores')
+                .on(
+                    'postgres_changes',
+                    { event: 'INSERT', schema: 'public', table: HIGH_SCORE_TABLE },
+                    () => loadLeaderboard()
+                )
+                .subscribe();
+        } catch (error) {
+            console.error('Could not initialize the leaderboard:', error);
+            if (leaderboardStatus) leaderboardStatus.textContent = 'Shared leaderboard unavailable.';
+        }
+    }
+
+    async function loadLeaderboard() {
+        if (!leaderboardClient || !leaderboardList) return;
+        if (leaderboardStatus) leaderboardStatus.textContent = 'Loading shared scores…';
+
+        const { data, error } = await leaderboardClient
+            .from(HIGH_SCORE_TABLE)
+            .select('player_name, score, difficulty, created_at')
+            .order('score', { ascending: false })
+            .order('created_at', { ascending: true })
+            .limit(10);
+
+        if (error) {
+            console.error('Could not load high scores:', error);
+            if (leaderboardStatus) leaderboardStatus.textContent = 'Could not load shared scores.';
+            return;
+        }
+
+        renderLeaderboard(data || []);
+        if (leaderboardStatus) {
+            leaderboardStatus.textContent = data && data.length
+                ? 'Top 10 shared scores'
+                : 'No shared scores yet. Be the first!';
+        }
+    }
+
+    function renderLeaderboard(scores) {
+        if (!leaderboardList) return;
+        leaderboardList.replaceChildren();
+
+        if (!scores.length) {
+            const empty = document.createElement('li');
+            empty.className = 'snake-leaderboard-empty';
+            empty.textContent = 'The leaderboard is waiting for its first champion.';
+            leaderboardList.appendChild(empty);
+            return;
+        }
+
+        scores.forEach((entry) => {
+            const item = document.createElement('li');
+            item.className = 'snake-leaderboard-item';
+
+            const player = document.createElement('span');
+            player.className = 'snake-leaderboard-player';
+            const name = document.createElement('strong');
+            name.textContent = entry.player_name || 'Anonymous';
+            const difficulty = document.createElement('span');
+            difficulty.textContent = formatDifficulty(entry.difficulty);
+            player.append(name, difficulty);
+
+            const score = document.createElement('strong');
+            score.className = 'snake-leaderboard-score';
+            score.textContent = String(entry.score ?? 0);
+
+            item.append(player, score);
+            leaderboardList.appendChild(item);
+        });
+    }
+
+    async function submitHighScore(event) {
+        event.preventDefault();
+        if (!leaderboardClient || state.scoreSubmitted || !state.gameOver) return;
+
+        const name = (leaderboardName?.value || '').trim();
+        if (!name) {
+            scoreSubmitStatus.textContent = 'Enter a name before submitting.';
+            leaderboardName?.focus();
+            return;
+        }
+        if (name.length > MAX_LEADERBOARD_NAME) {
+            scoreSubmitStatus.textContent = `Keep the name to ${MAX_LEADERBOARD_NAME} characters or fewer.`;
+            return;
+        }
+        if (!Number.isInteger(state.score) || state.score < 1 || state.score > MAX_SUBMIT_SCORE) {
+            scoreSubmitStatus.textContent = 'This score cannot be submitted.';
+            return;
+        }
+
+        submitScoreButton.disabled = true;
+        submitScoreButton.textContent = 'Submitting…';
+        scoreSubmitStatus.textContent = 'Sending your score to the garden…';
+
+        const { error } = await leaderboardClient
+            .from(HIGH_SCORE_TABLE)
+            .insert({
+                player_name: name,
+                score: state.score,
+                difficulty: state.difficulty || 'medium',
+                game_version: GAME_VERSION
+            });
+
+        if (error) {
+            console.error('Could not submit high score:', error);
+            submitScoreButton.disabled = false;
+            submitScoreButton.textContent = 'Submit Score';
+            scoreSubmitStatus.textContent = 'That score could not be submitted. Try again.';
+            return;
+        }
+
+        state.scoreSubmitted = true;
+        submitScoreButton.textContent = 'Score Submitted';
+        scoreSubmitStatus.textContent = 'Your score is now on the shared leaderboard.';
+        await loadLeaderboard();
+    }
+
+    function formatDifficulty(value) {
+        const key = String(value || '').toLowerCase();
+        return DIFFICULTIES[key]?.label || 'Unknown';
     }
 
     function gameClockNow() {

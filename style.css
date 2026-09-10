@@ -3782,6 +3782,10 @@ html[data-theme="dark"] .garden-connection {
     margin-top: auto;
 }
 
+.garden-clear-wide {
+    grid-column: 1 / -1;
+}
+
 .garden-secondary-button {
     padding: 8px;
     background: transparent;
@@ -3808,10 +3812,11 @@ html[data-theme="dark"] .garden-connection {
     border: 1px solid rgba(103, 112, 86, .62);
     border-radius: 18px;
     background:
-        linear-gradient(90deg, transparent 0 48px, rgba(180, 123, 82, .34) 49px 51px, transparent 52px),
-        repeating-linear-gradient(0deg, transparent 0 31px, rgba(111, 158, 184, .17) 32px 33px),
-        #f5edd8;
-    box-shadow: inset 0 0 28px rgba(79, 66, 45, .08);
+        radial-gradient(circle at 18% 24%, rgba(93, 106, 79, .08) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 76% 62%, rgba(120, 103, 78, .07) 0 1px, transparent 1.6px),
+        linear-gradient(180deg, #e8e0cb, #ddd3bc);
+    background-size: 19px 19px, 27px 27px, auto;
+    box-shadow: inset 0 0 34px rgba(79, 66, 45, .10);
     touch-action: none;
 }
 
@@ -3977,14 +3982,15 @@ html[data-theme="dark"] .garden-wall-note {
 }
 
 html[data-theme="dark"] .garden-board {
-    /* Keep the drawing surface parchment-light in both themes so saved ink
-       colors remain legible and do not change meaning when the theme changes. */
+    /* Keep the drawing surface light in both themes so saved ink colors remain
+       legible, but treat it as a softly textured wall rather than notebook paper. */
     background:
-        linear-gradient(90deg, transparent 0 48px, rgba(154, 108, 69, .30) 49px 51px, transparent 52px),
-        repeating-linear-gradient(0deg, transparent 0 31px, rgba(91, 137, 164, .18) 32px 33px),
-        #ddd3bb;
+        radial-gradient(circle at 18% 24%, rgba(61, 72, 53, .10) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 76% 62%, rgba(99, 83, 61, .09) 0 1px, transparent 1.6px),
+        linear-gradient(180deg, #ded6c0, #d2c7ae);
+    background-size: 19px 19px, 27px 27px, auto;
     border-color: rgba(214,175,87,.34);
-    box-shadow: inset 0 0 28px rgba(58, 49, 39, .10), 0 10px 22px rgba(0,0,0,.16);
+    box-shadow: inset 0 0 34px rgba(58, 49, 39, .13), 0 10px 22px rgba(0,0,0,.16);
 }
 
 html[data-theme="dark"] .garden-board-hint {
@@ -4065,3 +4071,320 @@ html[data-theme="dark"] .garden-save-status[data-state="live"] {
     }
 }
 /* ===== End Garden Wall drawing studio ===== */
+
+/* ===== Garden Wall v2: pannable shared wall ===== */
+.garden-placement-frame {
+    position: absolute;
+    z-index: 3;
+    border: 2px dashed rgba(49, 91, 63, .58);
+    border-radius: 12px;
+    background: transparent;
+    pointer-events: none;
+    box-sizing: border-box;
+    transition: border-color .18s ease, background-color .18s ease;
+}
+
+.garden-placement-frame::before {
+    content: "your contribution";
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: rgba(245, 237, 216, .86);
+    color: rgba(72, 63, 51, .78);
+    font-size: .68rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.garden-placement-frame.is-locked {
+    border-style: solid;
+    border-color: rgba(214, 175, 87, .86);
+    background: transparent;
+}
+
+.garden-placement-frame.is-locked::before {
+    content: "your contribution · anchored";
+}
+
+.garden-board-controls {
+    position: absolute;
+    z-index: 6;
+    left: 12px;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.garden-nav-button {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 6px 10px;
+    border: 1px solid rgba(49, 91, 63, .32);
+    border-radius: 10px;
+    background: rgba(245, 237, 216, .88);
+    color: #42392f;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(62, 50, 34, .08);
+}
+
+.garden-nav-reset {
+    min-width: 62px;
+    font-size: .74rem;
+}
+
+.garden-position {
+    position: absolute;
+    z-index: 5;
+    left: 12px;
+    top: 10px;
+    margin: 0;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(245, 237, 216, .78);
+    color: rgba(72, 63, 51, .72);
+    font-size: .7rem;
+    pointer-events: none;
+}
+
+.garden-draft-canvas[data-tool="hand"] {
+    cursor: grab;
+}
+
+.garden-draft-canvas[data-tool="hand"]:active {
+    cursor: grabbing;
+}
+
+html[data-theme="dark"] .garden-placement-frame {
+    border-color: rgba(49, 91, 63, .72);
+}
+
+html[data-theme="dark"] .garden-placement-frame.is-locked {
+    border-color: rgba(214, 175, 87, .88);
+}
+
+html[data-theme="dark"] .garden-placement-frame::before,
+html[data-theme="dark"] .garden-nav-button,
+html[data-theme="dark"] .garden-position {
+    background: rgba(31, 37, 31, .84);
+    color: #e9ddc6;
+    border-color: rgba(241, 231, 210, .18);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .garden-nav-button:hover {
+        border-color: var(--mustard);
+        transform: translateY(-1px);
+    }
+}
+
+@media (max-width: 560px) {
+    .garden-board-controls {
+        left: 8px;
+        bottom: 8px;
+    }
+
+    .garden-nav-button {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 5px 8px;
+    }
+
+    .garden-position {
+        left: 8px;
+        top: 8px;
+    }
+
+    .garden-board-hint {
+        max-width: 60%;
+        text-align: right;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .garden-placement-frame,
+    .garden-nav-button {
+        transition: none;
+    }
+}
+/* ===== End Garden Wall v2 ===== */
+
+/* ===== Jasmine Dragon shared Supabase leaderboard ===== */
+.snake-leaderboard-card {
+    overflow: hidden;
+}
+
+.snake-leaderboard-status {
+    margin: 8px 0 12px;
+    font-size: .88rem;
+    color: var(--muted-text, #6f665b);
+}
+
+.snake-leaderboard {
+    list-style: none;
+    counter-reset: garden-rank;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.snake-leaderboard-item {
+    counter-increment: garden-rank;
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px;
+    border: 1px solid rgba(70,58,47,.13);
+    border-radius: 12px;
+    background: rgba(255,255,255,.34);
+}
+
+.snake-leaderboard-item::before {
+    content: counter(garden-rank) ".";
+    font-family: 'Lora', serif;
+    font-weight: 800;
+    color: var(--mustard);
+}
+
+.snake-leaderboard-player {
+    min-width: 0;
+}
+
+.snake-leaderboard-player strong,
+.snake-leaderboard-player span {
+    display: block;
+}
+
+.snake-leaderboard-player strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.snake-leaderboard-player span {
+    margin-top: 1px;
+    font-size: .75rem;
+    color: var(--muted-text, #746a5f);
+}
+
+.snake-leaderboard-score {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--forest);
+}
+
+.snake-leaderboard-empty {
+    padding: 12px 0 4px;
+    text-align: center;
+    color: var(--muted-text, #746a5f);
+}
+
+.snake-score-submit {
+    margin: 16px 0 8px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(70,58,47,.16);
+    text-align: left;
+}
+
+.snake-score-submit[hidden] {
+    display: none !important;
+}
+
+.snake-final-score {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 13px;
+    text-align: center;
+}
+
+.snake-final-score span {
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.snake-final-score strong {
+    font-family: 'Lora', serif;
+    font-size: 1.65rem;
+    color: var(--forest);
+}
+
+.snake-score-submit label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: .86rem;
+    font-weight: 800;
+}
+
+.snake-score-submit-row {
+    display: flex;
+    gap: 8px;
+}
+
+.snake-score-submit-row input {
+    min-width: 0;
+    flex: 1 1 auto;
+    padding: 11px 12px;
+    border: 1px solid rgba(70,58,47,.28);
+    border-radius: 12px;
+    background: rgba(255,255,255,.78);
+    color: var(--brown);
+    font: inherit;
+}
+
+.snake-score-submit-row .snake-button {
+    flex: 0 0 auto;
+    padding-inline: 14px;
+}
+
+.snake-score-submit-status {
+    min-height: 1.25em;
+    margin: 7px 0 0;
+    font-size: .82rem;
+    text-align: center !important;
+}
+
+html[data-theme="dark"] .snake-leaderboard-item {
+    background: rgba(241,231,210,.045);
+    border-color: rgba(241,231,210,.11);
+}
+
+html[data-theme="dark"] .snake-leaderboard-score,
+html[data-theme="dark"] .snake-final-score strong {
+    color: #c7dfbc;
+}
+
+html[data-theme="dark"] .snake-score-submit {
+    border-top-color: rgba(214,175,87,.24);
+}
+
+html[data-theme="dark"] .snake-score-submit-row input {
+    background: #1c221d;
+    border-color: rgba(214,175,87,.42);
+    color: #f1e7d2;
+}
+
+html[data-theme="dark"] .snake-score-submit-row input::placeholder {
+    color: #a99f8e;
+}
+
+@media (max-width: 520px) {
+    .snake-score-submit-row {
+        flex-direction: column;
+    }
+
+    .snake-score-submit-row .snake-button {
+        width: 100%;
+    }
+}
+/* ===== End shared leaderboard ===== */

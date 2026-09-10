@@ -13,7 +13,7 @@
     <script>
         document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'dark';
     </script>
-    <link rel="stylesheet" href="style.css?v=20260909-1">
+    <link rel="stylesheet" href="style.css?v=20260910-3">
     <script src="theme-toggle.js?v=20260909-1" defer></script>
 </head>
 <body>
@@ -91,6 +91,19 @@
                                 </button>
                             </div>
 
+                            <form class="snake-score-submit" id="score-submit-form" hidden>
+                                <div class="snake-final-score" aria-live="polite">
+                                    <span>Final score</span>
+                                    <strong id="final-score-value">0</strong>
+                                </div>
+                                <label for="leaderboard-name">Name for the leaderboard</label>
+                                <div class="snake-score-submit-row">
+                                    <input id="leaderboard-name" name="player_name" type="text" maxlength="24" autocomplete="nickname" placeholder="Your name" required>
+                                    <button type="submit" class="snake-button" id="submit-score-button">Submit Score</button>
+                                </div>
+                                <p class="snake-score-submit-status" id="score-submit-status" aria-live="polite"></p>
+                            </form>
+
                             <div class="snake-overlay-actions" id="pause-actions" hidden>
                                 <button type="button" class="snake-button" id="overlay-resume">Resume</button>
                                 <button type="button" class="snake-button snake-button-alt" id="overlay-new">Choose Level</button>
@@ -139,6 +152,13 @@
                     <p>Use <strong>WASD</strong>, the <strong>arrow keys</strong>, or the <strong>on-screen controls</strong> to guide the snake. Your first movement starts the garden. Press <strong>P</strong> or <strong>Esc</strong> to pause and resume. Power-up and combo timers freeze while the garden is paused.</p>
                 </article>
 
+                <article class="snake-info-card snake-leaderboard-card" aria-labelledby="leaderboard-title">
+                    <p class="section-kicker">High Scores</p>
+                    <h3 id="leaderboard-title">Garden Champions</h3>
+                    <p class="snake-leaderboard-status" id="leaderboard-status" aria-live="polite">Connecting to the shared leaderboard…</p>
+                    <ol class="snake-leaderboard" id="snake-leaderboard" aria-label="Top Jasmine Dragon scores"></ol>
+                </article>
+
                 <article class="snake-info-card">
                     <p class="section-kicker">Items</p>
                     <h3>Garden Pickups</h3>
@@ -171,7 +191,9 @@
     <span class="visually-hidden" id="theme-toggle-text">Switch to light mode</span>
 </button>
 <footer><p>© 2026 Natalie Hasselriis</p></footer>
-<script src="snake.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js?v=20260910-1"></script>
+<script src="snake.js?v=20260910-2"></script>
 <script src="konami-jimothy.js?v=20260909-1"></script>
 </body>
 </html>
