@@ -3587,3 +3587,33 @@ html[data-theme="dark"] .snake-control-status-row {
     }
 }
 /* ===== End unified controls + status container ===== */
+
+
+/* ===== Garden Wall: Supabase connection status ===== */
+.garden-connection {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    margin-top: 1rem;
+    padding: .55rem .8rem;
+    border: 1px solid rgba(49, 91, 63, .28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .34);
+    font-size: .9rem;
+}
+.garden-connection-dot {
+    width: .65rem;
+    height: .65rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #d6af57;
+    box-shadow: 0 0 0 3px rgba(214, 175, 87, .14);
+}
+.garden-connection:has(#garden-connection-status[data-state="success"]) .garden-connection-dot { background: #5f8b63; }
+.garden-connection:has(#garden-connection-status[data-state="error"]) .garden-connection-dot { background: #9d5d52; }
+html[data-theme="dark"] .garden-connection {
+    background: rgba(42, 49, 41, .72);
+    border-color: rgba(241, 231, 210, .17);
+    color: #eee4cf;
+}
+/* ===== End Garden Wall connection status ===== */

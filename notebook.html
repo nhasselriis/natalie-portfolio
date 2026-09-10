@@ -27,8 +27,12 @@
         <p class="section-kicker">A Page in Progress</p>
         <h2 id="notebook-title">Notes</h2>
         <div class="notebook-paper">
-            <p class="notebook-lead">This page is still taking shape.</p>
-            <p>There is more to come here as the portfolio continues to grow.</p>
+            <p class="notebook-lead">The Garden Wall is taking root.</p>
+            <p>This page will become a shared place where visitors can draw, doodle, and leave a mark for the next person who wanders through.</p>
+            <div class="garden-connection" aria-live="polite">
+                <span class="garden-connection-dot" aria-hidden="true"></span>
+                <span id="garden-connection-status">Checking the garden…</span>
+            </div>
         </div>
     </section>
 </main>
@@ -49,6 +53,9 @@
     <span class="visually-hidden" id="theme-toggle-text">Switch to light mode</span>
 </button>
 <footer><p>© 2026 Natalie Hasselriis</p></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js?v=20260910-1"></script>
+<script src="garden-wall.js?v=20260910-1"></script>
 <script src="konami-jimothy.js?v=20260909-1"></script>
 </body>
 </html>
