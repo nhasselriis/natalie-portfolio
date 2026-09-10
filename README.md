@@ -112,6 +112,6 @@ The About page includes a compact contact section with a larger form column and 
 
 ## Light & Dark Mode
 
-- The portfolio now includes an animated light/dark mode toggle on every page, including the Secret page and *Jasmine Dragon: Zen Garden*.
+- The portfolio now includes the restored animated light/dark mode toggle on every page, including the Secret page and *Jasmine Dragon: Zen Garden*.
 - Dark mode is the default on a visitor’s first load; the toggle saves the visitor’s chosen theme in `localStorage` for future visits.
-- Dark-mode colors were adjusted across cards, forms, notebook surfaces, headings, and game interface panels while preserving the authored colours of the game board and artwork.
+- Dark-mode colors were adjusted across cards, forms, notebook surfaces, headings, and game interface panels while preserving the authored colors of the game board and artwork.

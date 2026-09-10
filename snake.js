@@ -24,6 +24,8 @@
     const effectsList = document.querySelector('#effects-list');
     const effectsSummary = document.querySelector('#effects-summary');
     const statusDisplay = document.querySelector('#game-status');
+    const touchDirectionButtons = document.querySelectorAll('[data-direction]');
+    const touchPauseButton = document.querySelector('#touch-pause');
 
     const BOARD_TILES = 18;
     const BOARD_GRID_X = canvas.width * (124.13 / 1254);
@@ -138,6 +140,23 @@
     });
 
     overlayNew.addEventListener('click', () => showStartScreen());
+
+    touchDirectionButtons.forEach((button) => {
+        button.addEventListener('pointerdown', (event) => {
+            event.preventDefault();
+            const requested = button.dataset.direction;
+            if (!requested || !state.running || state.paused || state.gameOver) return;
+            updateNextDirection(vectors[requested]);
+        });
+    });
+
+    if (touchPauseButton) {
+        touchPauseButton.addEventListener('click', () => {
+            if (!state.running || state.gameOver) return;
+            if (state.paused) resumeGarden();
+            else pauseGarden();
+        });
+    }
 
     window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' || event.key === 'p' || event.key === 'P') {

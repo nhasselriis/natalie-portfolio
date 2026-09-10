@@ -25,7 +25,6 @@
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="notebook.html">Notes</a>
-        <a href="secret.html">Secret</a>
     </nav>
 </header>
 
@@ -100,31 +99,44 @@
                     </div>
                 </div>
 
-                <div class="snake-meter-group" aria-label="Active meters">
-                    <div class="snake-meter-card">
-                        <div class="snake-meter-heading">
-                            <span>Combo Timer</span>
-                            <strong id="combo-label">Ready</strong>
+                <div class="snake-control-status-row">
+                    <section class="snake-control-card snake-status-panel" aria-label="Touch controls">
+                        <div class="snake-panel-title"><span>Controls</span></div>
+                        <div class="snake-touch-controls">
+                            <button type="button" class="touch-arrow touch-pause" id="touch-pause" aria-label="Pause or resume game">Ⅱ</button>
+                            <button type="button" class="touch-arrow" data-direction="up" aria-label="Move up">▲</button>
+                            <span class="touch-spacer" aria-hidden="true"></span>
+                            <button type="button" class="touch-arrow" data-direction="left" aria-label="Move left">◀</button>
+                            <button type="button" class="touch-arrow" data-direction="down" aria-label="Move down">▼</button>
+                            <button type="button" class="touch-arrow" data-direction="right" aria-label="Move right">▶</button>
                         </div>
-                        <div class="snake-meter-track"><span id="combo-fill"></span></div>
-                    </div>
-                    <div class="snake-meter-card">
-                        <div class="snake-meter-heading">
-                            <span>Active Effects</span>
-                            <strong id="effects-summary">None</strong>
+                    </section>
+
+                    <section class="snake-status-panel snake-combined-status" aria-label="Garden status">
+                        <div class="snake-status-section snake-effects-section">
+                            <div class="snake-panel-title"><span>Active Effects</span></div>
+                            <div class="snake-panel-status"><strong id="effects-summary">None</strong></div>
+                            <div class="snake-effect-tags" id="effects-list" aria-live="polite"></div>
                         </div>
-                        <div class="snake-effect-tags" id="effects-list" aria-live="polite"></div>
-                    </div>
+
+                        <div class="snake-status-divider" aria-hidden="true"></div>
+
+                        <div class="snake-status-section snake-combo-section">
+                            <div class="snake-panel-title"><span>Combo Timer</span></div>
+                            <div class="snake-panel-status"><strong id="combo-label">Ready</strong></div>
+                            <div class="snake-meter-track"><span id="combo-fill"></span></div>
+                        </div>
+                    </section>
                 </div>
 
-                <p class="game-status" id="game-status" aria-live="polite">Choose a level to begin, then use the arrow keys or WASD to guide the snake.</p>
+                <p class="game-status" id="game-status" aria-live="polite">Choose a level to begin, then use the arrow keys, WASD, or the touch controls to guide the snake.</p>
             </div>
 
             <aside class="snake-sidebar" aria-label="Game details and item guide">
                 <article class="snake-info-card" aria-labelledby="how-to-play-title">
                     <p class="section-kicker">How It Plays</p>
                     <h3 id="how-to-play-title">Guide the Garden</h3>
-                    <p>Use <strong>WASD</strong> or the <strong>arrow keys</strong> to guide the snake. Your first movement starts the garden. Press <strong>P</strong> or <strong>Esc</strong> to pause and resume. Power-up and combo timers freeze while the garden is paused.</p>
+                    <p>Use <strong>WASD</strong>, the <strong>arrow keys</strong>, or the <strong>on-screen controls</strong> to guide the snake. Your first movement starts the garden. Press <strong>P</strong> or <strong>Esc</strong> to pause and resume. Power-up and combo timers freeze while the garden is paused.</p>
                 </article>
 
                 <article class="snake-info-card">
@@ -160,5 +172,6 @@
 </button>
 <footer><p>© 2026 Natalie Hasselriis</p></footer>
 <script src="snake.js"></script>
+<script src="konami-jimothy.js"></script>
 </body>
 </html>

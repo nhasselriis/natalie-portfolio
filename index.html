@@ -20,7 +20,6 @@
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="notebook.html">Notes</a>
-        <a href="secret.html">Secret</a>
     </nav>
 </header>
 <main id="main-content">
@@ -71,10 +70,83 @@
     </div>
 </div>
 
+<button class="lotus-compliment-trigger" id="lotus-compliment-trigger" type="button" aria-label="Open a little garden kindness">🪷</button>
+
+<aside class="compliment-scroll" id="compliment-scroll" role="dialog" aria-labelledby="compliment-title" aria-hidden="true">
+    <button class="compliment-scroll-close" id="compliment-scroll-close" type="button" aria-label="Close the compliment scroll">×</button>
+    <p class="section-kicker">A Little Garden Kindness</p>
+    <h2 id="compliment-title">Who wandered into the garden?</h2>
+    <p class="compliment-scroll-intro">Leave your name with the lotus and take a kind thought with you.</p>
+    <form class="compliment-form" id="compliment-form">
+        <label for="compliment-name">Your name</label>
+        <input id="compliment-name" name="name" type="text" maxlength="40" autocomplete="name" placeholder="Natalie" required>
+        <div class="compliment-scroll-actions">
+            <button class="compliment-action" type="submit">Tell me something nice</button>
+            <button class="compliment-action secondary" id="another-compliment" type="button" hidden>Another one</button>
+        </div>
+    </form>
+    <p class="compliment-result" id="compliment-result" aria-live="polite"></p>
+</aside>
+
+
+<div class="secret-easter-egg-anchor">
+    <button class="mountain-trigger" id="secret-tunnel-trigger" type="button" aria-label="Open the Secret Tunnel easter egg">⛰️</button>
+</div>
+
+<div class="secret-tunnel-popout" id="secret-tunnel-popout" aria-hidden="true">
+    <p class="secret-tunnel-label">Secret Tunnel!</p>
+    <a class="secret-tunnel-link" href="secret.html" aria-label="Enter the secret page">
+        <img id="secret-tunnel-gif" src="assets/images/chong-secret-tunnel.gif" alt="Chong playing music in the Secret Tunnel scene. Click to enter the secret page.">
+    </a>
+</div>
+<audio id="secret-tunnel-audio" src="assets/audio/secret-tunnel.mp3" preload="auto"></audio>
+
 <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="true">
     <img id="theme-toggle-image" src="assets/images/theme-toggle/night.png" alt="" aria-hidden="true">
     <span class="visually-hidden" id="theme-toggle-text">Switch to light mode</span>
 </button>
 <footer><p>© 2026 Natalie Hasselriis</p></footer>
+<script src="garden-compliments.js"></script>
+<script>
+(() => {
+    const trigger = document.getElementById('secret-tunnel-trigger');
+    const popout = document.getElementById('secret-tunnel-popout');
+    const gif = document.getElementById('secret-tunnel-gif');
+    const audio = document.getElementById('secret-tunnel-audio');
+    if (!trigger || !popout || !gif || !audio) return;
+
+    const gifSrc = gif.getAttribute('src');
+
+    const stopSecretTunnelAudio = () => {
+        audio.pause();
+        audio.currentTime = 0;
+    };
+
+    const playSecretTunnel = () => {
+        popout.classList.remove('is-playing');
+        popout.setAttribute('aria-hidden', 'false');
+        stopSecretTunnelAudio();
+
+        gif.removeAttribute('src');
+        void popout.offsetWidth;
+        gif.setAttribute('src', gifSrc);
+        popout.classList.add('is-playing');
+
+        audio.volume = 0.5;
+        const playPromise = audio.play();
+        if (playPromise) playPromise.catch(() => {});
+    };
+
+    trigger.addEventListener('click', playSecretTunnel);
+
+    popout.addEventListener('animationend', () => {
+        popout.classList.remove('is-playing');
+        popout.setAttribute('aria-hidden', 'true');
+        stopSecretTunnelAudio();
+    });
+})();
+</script>
+
+<script src="konami-jimothy.js"></script>
 </body>
 </html>
