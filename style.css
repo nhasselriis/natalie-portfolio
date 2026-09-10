@@ -4215,7 +4215,7 @@ html[data-theme="dark"] .garden-position {
 
 /* ===== Jasmine Dragon shared Supabase leaderboard ===== */
 .snake-leaderboard-card {
-    overflow: visible;
+    overflow: hidden;
 }
 
 .snake-leaderboard-status {
@@ -4388,3 +4388,25 @@ html[data-theme="dark"] .snake-score-submit-row input::placeholder {
     }
 }
 /* ===== End shared leaderboard ===== */
+
+/* ===== Snake sidebar polish: leaderboard tape + compact legends ===== */
+.snake-info-card.snake-leaderboard-card {
+    overflow: visible !important;
+}
+
+.snake-info-card > .snake-legend-list {
+    margin-top: 12px;
+    gap: 16px;
+}
+
+.snake-info-card .legend-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+}
+
+.snake-info-card .snake-legend-list li {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px;
+}
+/* ===== End Snake sidebar polish ===== */
