@@ -3617,3 +3617,451 @@ html[data-theme="dark"] .garden-connection {
     color: #eee4cf;
 }
 /* ===== End Garden Wall connection status ===== */
+
+/* ===== Garden Wall drawing studio ===== */
+.garden-wall-section {
+    max-width: 1180px;
+}
+
+.garden-wall-intro {
+    max-width: 760px;
+    margin: 0 auto 1rem;
+    text-align: center;
+}
+
+.garden-connection-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+}
+
+.garden-connection-row .garden-connection {
+    margin-top: 0;
+}
+
+.garden-mark-count {
+    margin: 0;
+    font-size: .88rem;
+    color: var(--muted-text, #6b6258);
+}
+
+.garden-studio {
+    display: grid;
+    grid-template-columns: minmax(205px, 245px) minmax(0, 1fr);
+    gap: 18px;
+    padding: 18px;
+    border: 1px solid rgba(103, 112, 86, .55);
+    border-radius: 22px;
+    background: rgba(255, 252, 239, .34);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.garden-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px;
+    border: 1px solid rgba(103, 112, 86, .48);
+    border-radius: 18px;
+    background: rgba(250, 245, 224, .62);
+}
+
+.garden-tool-group h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    color: var(--forest);
+}
+
+.garden-tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.garden-tool,
+.garden-secondary-button,
+.garden-save-button {
+    min-height: 44px;
+    border: 1px solid rgba(49, 91, 63, .45);
+    border-radius: 12px;
+    font: inherit;
+    cursor: pointer;
+    transition: background-color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.garden-tool {
+    display: grid;
+    place-items: center;
+    gap: 2px;
+    padding: 7px 5px;
+    background: rgba(255,255,255,.5);
+    color: var(--brown);
+    font-size: .78rem;
+}
+
+.garden-tool > span:first-child {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.garden-tool.is-active {
+    background: rgba(49, 91, 63, .14);
+    border-color: var(--mustard);
+    box-shadow: 0 0 0 2px rgba(214, 175, 87, .12);
+}
+
+.garden-color-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.garden-color,
+.garden-custom-color-label {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+}
+
+.garden-color {
+    appearance: none;
+    border: 2px solid rgba(255,255,255,.7);
+    outline: 1px solid rgba(49,91,63,.34);
+    background: var(--swatch);
+    cursor: pointer;
+}
+
+.garden-color.is-active {
+    box-shadow: 0 0 0 3px var(--mustard);
+}
+
+.garden-custom-color-label {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px dashed rgba(49,91,63,.48);
+    background: conic-gradient(#f45, #fd5, #6c6, #4ad, #86e, #f45);
+    cursor: pointer;
+}
+
+.garden-custom-color {
+    width: 46px;
+    height: 46px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.garden-size-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .5rem;
+    margin-bottom: 7px;
+    font-size: .9rem;
+}
+
+.garden-size-label output {
+    color: var(--muted-text, #6b6258);
+    font-size: .8rem;
+}
+
+.garden-size {
+    width: 100%;
+    accent-color: var(--forest);
+}
+
+.garden-edit-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.garden-secondary-button {
+    padding: 8px;
+    background: transparent;
+    color: var(--brown);
+}
+
+.garden-secondary-button:disabled,
+.garden-save-button:disabled {
+    cursor: not-allowed;
+    opacity: .45;
+}
+
+.garden-board-column {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.garden-board {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    border: 1px solid rgba(103, 112, 86, .62);
+    border-radius: 18px;
+    background:
+        linear-gradient(90deg, transparent 0 48px, rgba(180, 123, 82, .34) 49px 51px, transparent 52px),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(111, 158, 184, .17) 32px 33px),
+        #f5edd8;
+    box-shadow: inset 0 0 28px rgba(79, 66, 45, .08);
+    touch-action: none;
+}
+
+.garden-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.garden-saved-canvas {
+    pointer-events: none;
+}
+
+.garden-draft-canvas {
+    cursor: crosshair;
+    outline: none;
+}
+
+.garden-draft-canvas[data-tool="eraser"] {
+    cursor: cell;
+}
+
+.garden-draft-canvas:focus-visible {
+    box-shadow: inset 0 0 0 3px var(--mustard);
+}
+
+.garden-board-hint {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    margin: 0;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(245,237,216,.8);
+    color: rgba(72,63,51,.72);
+    font-size: .75rem;
+    pointer-events: none;
+}
+
+.garden-sign-row {
+    padding: 14px 16px;
+    border: 1px solid rgba(103,112,86,.48);
+    border-radius: 16px;
+    background: rgba(250,245,224,.5);
+}
+
+.garden-sign-row > label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 700;
+}
+
+.garden-sign-row > label span {
+    font-weight: 400;
+    color: var(--muted-text, #6b6258);
+}
+
+.garden-sign-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+}
+
+.garden-sign-controls input {
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid rgba(49,91,63,.45);
+    border-radius: 11px;
+    background: rgba(255,255,255,.72);
+    color: var(--brown);
+    font: inherit;
+}
+
+.garden-save-button {
+    padding: 9px 16px;
+    background: var(--forest);
+    border-color: var(--mustard);
+    color: #fff8e8;
+    font-weight: 700;
+}
+
+.garden-save-status {
+    min-height: 1.3em;
+    margin: 9px 0 0;
+    font-size: .82rem;
+    color: var(--muted-text, #6b6258);
+}
+
+.garden-save-status[data-state="success"],
+.garden-save-status[data-state="live"] {
+    color: var(--forest);
+}
+
+.garden-save-status[data-state="error"] {
+    color: #9d5d52;
+}
+
+.garden-wall-note {
+    max-width: 850px;
+    margin: 14px auto 0;
+    text-align: center;
+    font-size: .82rem;
+    color: var(--muted-text, #6b6258);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .garden-tool:hover,
+    .garden-secondary-button:not(:disabled):hover {
+        transform: translateY(-1px);
+        border-color: var(--mustard);
+    }
+    .garden-save-button:not(:disabled):hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 12px rgba(49,91,63,.2);
+    }
+}
+
+html[data-theme="dark"] .garden-studio {
+    background: rgba(35, 42, 35, .82);
+    border-color: rgba(241,231,210,.17);
+}
+
+html[data-theme="dark"] .garden-tools,
+html[data-theme="dark"] .garden-sign-row {
+    background: rgba(42,49,41,.86);
+    border-color: rgba(241,231,210,.17);
+}
+
+html[data-theme="dark"] .garden-tool-group h3 {
+    color: #c7dfbc;
+}
+
+html[data-theme="dark"] .garden-tool,
+html[data-theme="dark"] .garden-secondary-button {
+    background: #30372e;
+    border-color: rgba(241,231,210,.17);
+    color: #eee4cf;
+}
+
+html[data-theme="dark"] .garden-tool.is-active {
+    background: #43533f;
+    border-color: #d6af57;
+}
+
+html[data-theme="dark"] .garden-color {
+    border-color: #30372e;
+    outline-color: rgba(241,231,210,.23);
+}
+
+html[data-theme="dark"] .garden-custom-color-label {
+    border-color: rgba(241,231,210,.27);
+}
+
+html[data-theme="dark"] .garden-size-label output,
+html[data-theme="dark"] .garden-mark-count,
+html[data-theme="dark"] .garden-sign-row > label span,
+html[data-theme="dark"] .garden-save-status,
+html[data-theme="dark"] .garden-wall-note {
+    color: #cec2ad;
+}
+
+html[data-theme="dark"] .garden-board {
+    /* Keep the drawing surface parchment-light in both themes so saved ink
+       colors remain legible and do not change meaning when the theme changes. */
+    background:
+        linear-gradient(90deg, transparent 0 48px, rgba(154, 108, 69, .30) 49px 51px, transparent 52px),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(91, 137, 164, .18) 32px 33px),
+        #ddd3bb;
+    border-color: rgba(214,175,87,.34);
+    box-shadow: inset 0 0 28px rgba(58, 49, 39, .10), 0 10px 22px rgba(0,0,0,.16);
+}
+
+html[data-theme="dark"] .garden-board-hint {
+    background: rgba(31,37,31,.78);
+    color: #cec2ad;
+}
+
+html[data-theme="dark"] .garden-sign-controls input {
+    background: #1f241f;
+    border-color: rgba(241,231,210,.2);
+    color: #eee4cf;
+}
+
+html[data-theme="dark"] .garden-save-button {
+    background: #315b3f;
+    color: #fff6df;
+}
+
+html[data-theme="dark"] .garden-save-status[data-state="success"],
+html[data-theme="dark"] .garden-save-status[data-state="live"] {
+    color: #bfe0b4;
+}
+
+@media (max-width: 820px) {
+    .garden-studio {
+        grid-template-columns: 1fr;
+    }
+
+    .garden-tools {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .garden-edit-actions {
+        margin-top: 0;
+    }
+
+    .garden-board {
+        min-height: 460px;
+    }
+}
+
+@media (max-width: 560px) {
+    .garden-studio {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .garden-tools {
+        grid-template-columns: 1fr;
+        padding: 13px;
+        gap: 13px;
+    }
+
+    .garden-tool-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .garden-board {
+        min-height: 390px;
+    }
+
+    .garden-sign-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .garden-save-button {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .garden-tool,
+    .garden-secondary-button,
+    .garden-save-button {
+        transition: none;
+    }
+}
+/* ===== End Garden Wall drawing studio ===== */
