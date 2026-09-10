@@ -4215,7 +4215,7 @@ html[data-theme="dark"] .garden-position {
 
 /* ===== Jasmine Dragon shared Supabase leaderboard ===== */
 .snake-leaderboard-card {
-    overflow: hidden;
+    overflow: visible;
 }
 
 .snake-leaderboard-status {
