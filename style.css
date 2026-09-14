@@ -2267,6 +2267,11 @@ html[data-theme="dark"] nav a[aria-current="page"] {
     border-color: var(--mustard);
 }
 
+html[data-theme="dark"] .skip-link {
+    background: #f1e7d2;
+    color: #302a22;
+}
+
 /* Keep green accents readable against dark surfaces without turning green controls light. */
 html[data-theme="dark"] h2,
 html[data-theme="dark"] h3,
